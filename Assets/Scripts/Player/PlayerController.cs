@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
     public float curTime;      //근거리 공격
     public float coolTime = 0.5f;
     public float weapon;
+    public GameObject bullet;
+    public GameObject bulletpos;
+    Vector3 dir;
+    public float bulletSpeed = 15f;
 
     public float health = 10f;
 
@@ -17,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public Transform target;
     public float speed;
     private Vector3 vector;
+   
 
     public float runSpeed;
     private float applyRunSpeed;
@@ -26,7 +31,13 @@ public class PlayerController : MonoBehaviour
     private int currentWalkCount;
 
     private bool canMove = true;
+    bool isSlow = false;
+    Camera cam;
 
+    private void Start()
+    {
+        cam = Camera.main;
+    }
     void Update()
     {
 
@@ -44,16 +55,23 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 StartCoroutine(MoveCoroutine());
             }
+
+            Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+            rigidbody.velocity = Vector3.zero;   //충돌시에 떨림과 밀림 방지
+
+        }
+        if(!isSlow)
+        {
+            speed = 0.3f;
         }
 
-        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.velocity = Vector3.zero;   //충돌시에 떨림과 밀림 방지
+        dir = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -cam.transform.position.z));
     }
 
     void Attack()
     {
-        if (!Input.GetKey(KeyCode.Space))
-            return;
+       //if (!Input.GetKey(KeyCode.Space))
+       //     return;
 
         if (curShotDelay < maxShotDelay)
             return;
@@ -69,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
             case 2:
 
-
+                SlingShotAttack();
 
                 break;
             case 3:
@@ -87,7 +105,7 @@ public class PlayerController : MonoBehaviour
         if (curTime <= 0)
         {
 
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetMouseButtonDown(0)) //(Input.GetKey(KeyCode.Space))
             {
                 Collider2D[] collider2ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
                 foreach (Collider2D collider in collider2ds)
@@ -107,6 +125,37 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void SlingShotAttack()
+    {
+        if (curTime <= 0)
+        {
+
+            if (Input.GetMouseButton(0))
+            {
+
+                
+                GameObject Bullet = Instantiate(bullet);
+                Bullet.transform.position = bulletpos.transform.position;
+                Bullet.gameObject.GetComponent<Rigidbody2D>().AddForce(dir * bulletSpeed, ForceMode2D.Impulse);
+
+                //float h = Input.GetAxisRaw("Horizontal");
+                //rigid.velocity = new Vector2(h * 3, rigid.velocity.y);
+                //if(h > 0)
+                //{
+
+                //   rigid.transform.eulerAngles = new Vector3(0, 0, 0);
+                //}
+                //if (h < 0)
+                //{
+                //    rigid.transform.eulerAngles = new Vector3(0, 180, 0);
+                //}
+               
+                curTime = coolTime;
+
+            }
+        }
+    }
+
     void Reload()
     {
         curShotDelay += Time.deltaTime;
@@ -116,6 +165,23 @@ public class PlayerController : MonoBehaviour
     public void OnHit(int dmg)
     {
         health -= dmg;
+    }
+    public void Slow(float dmg)
+    {
+        if (isSlow == false)
+        {
+            speed -= dmg;
+            if (speed == 0.2)
+            {
+                speed = 0.3f;
+            }
+            Invoke("UnSlow", 2f);
+        }
+        
+    }
+    void UnSlow()
+    {
+        isSlow = false;
     }
 
     public void Die()
@@ -154,7 +220,7 @@ public class PlayerController : MonoBehaviour
                 currentWalkCount++;
             }
             currentWalkCount++;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.07f);
         }
         currentWalkCount = 0;
         canMove = true;
