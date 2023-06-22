@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     public bool cameraFix = false;
     public bool cameraFollow = false;
 
+    public GameObject mainCamera;
+    public GameObject playerCamera;
+
+
     private void Awake()    //싱글턴
     {
         if (Instance != null)
@@ -28,13 +32,16 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
 
-        if (fruitCount == 4)    //미니게임에서 메인게임으로
-        {
-            player.SetActive(true);
-            miniG.SetActive(false);
-            Camera.main.transform.position = new Vector3(cameraPos.position.x, cameraPos.position.y, -10);
+        //if (fruitCount == 4)    //미니게임에서 메인게임으로
+        //{
+        //    player.SetActive(true);
+        //    miniG.SetActive(false);
+        //    mainCamera.SetActive(false);
+        //    playerCamera.SetActive(true);
 
-        }
+        //    Camera.main.transform.position = new Vector3(cameraPos.position.x, cameraPos.position.y, -10);
+
+        //}
 
     }
 
