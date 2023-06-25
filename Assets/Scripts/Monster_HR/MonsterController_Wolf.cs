@@ -5,10 +5,15 @@ using UnityEngine;
 public class MonsterController_Wolf : MonoBehaviour
 {
     public Transform player;
-    float speed = 5f;
+    float speed = 2f;
     public float range = 10f;
 
     void Update()
+    {
+        Invoke("Follow", 3f);
+    }
+
+    void Follow()
     {
         float distance = Vector3.Distance(transform.position, player.position);
 
@@ -18,5 +23,6 @@ public class MonsterController_Wolf : MonoBehaviour
 
             transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
+
     }
 }
