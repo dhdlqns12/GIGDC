@@ -8,40 +8,38 @@ public class PlayerController : MonoBehaviour
     public float curShotDelay;
     public float curTime;      //근거리 공격
     public float coolTime = 0.5f;
+    public float curPTime;
+    public float maxPTime = 5f;
+
     public float weapon;
     public GameObject bullet;
     public GameObject bulletpos;
-    Vector3 dir;
-    public float bulletSpeed = 15f;
+    public Vector2 PlayerPos;
+    Vector2 Mouseposition;
+    float bulletSpeed = 100f;
 
-    public float health = 10f;
+    float health = 300f;
 
     public Transform pos; //근접공격 범위 지정 변수1
     public Vector2 boxSize;  //근접공격 범위 지정 변수2
     public Transform target;
-    public float speed;
+    public float speed = 40f;
     private Vector3 vector;
-   
-
     public float runSpeed;
-    private float applyRunSpeed;
-    private bool applyRunFlag = false;
-
     public int walkCount;
     private int currentWalkCount;
+    private bool canMove = true;
 
-    public bool canMove = true;
-    bool isSlow = false;
+
+
+
+
     Camera cam;
+    Bullet BBullet;
 
     //애니메이션 변수들
     Animator anim;
     public Vector2 moveDiriection = new Vector2(1, 0);  //애니메이션에 사용할 방향
-
-    private void OnEnable()
-    {
-        canMove = true;
-    }
 
     private void Start()
     {
@@ -54,6 +52,8 @@ public class PlayerController : MonoBehaviour
         Attack();
         Reload();
         Die();
+        Potion();
+        WeaponChange();
 
         // 좌측 방향키면 -1, 우측 방향키면 1, 상측 방향키면 1, 하측 방향키면 -1
         // 버튼을 눌렀을 때 실행
@@ -70,12 +70,11 @@ public class PlayerController : MonoBehaviour
             rigidbody.velocity = Vector3.zero;   //충돌시에 떨림과 밀림 방지
 
         }
-        if(!isSlow)
-        {
-            speed = 0.3f;
-        }
 
-        dir = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -cam.transform.position.z));
+
+        Mouseposition = Input.mousePosition;
+        Mouseposition = cam.ScreenToWorldPoint(Mouseposition);
+
 
         //플레이어 애니메이션 함수
         float horizontal = Input.GetAxis("Horizontal");
@@ -98,8 +97,8 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
-       //if (!Input.GetKey(KeyCode.Space))
-       //     return;
+        //if (!Input.GetKey(KeyCode.Space))
+        //     return;
 
         if (curShotDelay < maxShotDelay)
             return;
@@ -161,23 +160,16 @@ public class PlayerController : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
 
-                
-                GameObject Bullet = Instantiate(bullet);
-                Bullet.transform.position = bulletpos.transform.position;
-                Bullet.gameObject.GetComponent<Rigidbody2D>().AddForce(dir * bulletSpeed, ForceMode2D.Impulse);
+                Vector2 Dir = (Mouseposition - PlayerPos);
+                GameObject MakeBullet = Instantiate(bullet, transform.position, Quaternion.Euler(0.0f, 0.0f, 0.0f));
 
-                //float h = Input.GetAxisRaw("Horizontal");
-                //rigid.velocity = new Vector2(h * 3, rigid.velocity.y);
-                //if(h > 0)
-                //{
+                BBullet = MakeBullet.GetComponent<Bullet>();
+                BBullet.Launch(Dir.normalized, bulletSpeed * Time.deltaTime * 100f);
+                //GameObject Bullet = Instantiate(bullet);
+                //Bullet.transform.position = bulletpos.transform.position;
+                //Bullet.gameObject.GetComponent<Rigidbody2D>().AddForce(Mouseposition * bulletSpeed*Time.deltaTime, ForceMode2D.Impulse);
 
-                //   rigid.transform.eulerAngles = new Vector3(0, 0, 0);
-                //}
-                //if (h < 0)
-                //{
-                //    rigid.transform.eulerAngles = new Vector3(0, 180, 0);
-                //}
-               
+
                 curTime = coolTime;
 
             }
@@ -188,29 +180,15 @@ public class PlayerController : MonoBehaviour
     {
         curShotDelay += Time.deltaTime;
         curTime -= Time.deltaTime;
+        curPTime += Time.deltaTime;
     }
 
     public void OnHit(int dmg)
     {
         health -= dmg;
     }
-    public void Slow(float dmg)
-    {
-        if (isSlow == false)
-        {
-            speed -= dmg;
-            if (speed == 0.2)
-            {
-                speed = 0.3f;
-            }
-            Invoke("UnSlow", 2f);
-        }
-        
-    }
-    void UnSlow()
-    {
-        isSlow = false;
-    }
+
+
 
     public void Die()
     {
@@ -218,37 +196,38 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
     }
 
+    public void Potion()
+    {
+        if (curPTime < maxPTime)
+            return;
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            health = 300f;
+
+            curPTime = 0;
+        }
+
+
+    }
     IEnumerator MoveCoroutine()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            applyRunSpeed = runSpeed;
-            applyRunFlag = true;
-        }
-        else
-        {
-            applyRunSpeed = 0;
-            applyRunFlag = false;
-        }
+
         vector.Set(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), transform.position.z);
 
         while (currentWalkCount < walkCount)
         {
             if (vector.x != 0)
             {
-                transform.Translate(vector.x * (speed + applyRunSpeed), 0, 0);
+                transform.Translate(vector.x * (speed) * Time.deltaTime, 0, 0);
             }
             else if (vector.y != 0)
             {
-                transform.Translate(0, vector.y * (speed + applyRunSpeed), 0);
+                transform.Translate(0, vector.y * (speed) * Time.deltaTime, 0);
             }
 
-            if (applyRunFlag)
-            {
-                currentWalkCount++;
-            }
+
             currentWalkCount++;
-            yield return new WaitForSeconds(0.07f);
+            yield return new WaitForSeconds(0.01f);
         }
         currentWalkCount = 0;
         canMove = true;
@@ -265,6 +244,33 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.key = true;
             Destroy(collision.gameObject);
+        }
+        if (collision.tag == "trap")
+        {
+            Trap();
+        }
+    }
+
+    public void Trap()
+    {
+        speed = 0;
+        Invoke("TrapEnd", 2f);
+    }
+
+    void TrapEnd()
+    {
+        speed = 5f;
+    }
+
+    public void WeaponChange()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            weapon = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            weapon = 2;
         }
     }
 }

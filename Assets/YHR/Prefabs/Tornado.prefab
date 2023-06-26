@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5112965670015862247}
   - component: {fileID: 7399421134791404667}
   - component: {fileID: 136486796203783640}
-  - component: {fileID: 7841275135348287241}
   - component: {fileID: 1033797498975365489}
   m_Layer: 0
   m_Name: Tornado
@@ -182,19 +181,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
---- !u!114 &7841275135348287241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7249490711939488221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 705f134ff2a66004da292804581f6eee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0.1
 --- !u!114 &1033797498975365489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,5 +193,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa7d0100c1f52d439853a05b4be99ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: 
+  enemyName: Bat
   damage: 1

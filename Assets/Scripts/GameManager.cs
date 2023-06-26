@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public PoolManager pool;
     public GameObject player;   //플레이어 연결
     public GameObject miniG;    //미니게임 이동 오브젝트
     public Transform cameraPos; //카메라 시점 변경

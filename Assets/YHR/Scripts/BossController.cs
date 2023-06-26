@@ -1,0 +1,305 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BossController : MonoBehaviour
+{
+
+    public float speed = 0.5f;
+    public int health;
+  
+    public GameObject bulletObjA;
+    public GameObject vinespawnA;
+    public GameObject vinespawnB;
+    public GameObject waterwallA;
+    public GameObject waterwallB;
+    public GameObject waterwallC;
+    public GameObject waterwallD;
+    public GameObject vinespawnAwarn;
+    public GameObject vinespawnBwarn;
+    public GameObject waterwallAwarn;
+    public GameObject waterwallBwarn;
+    public GameObject waterwallCwarn;
+    public GameObject waterwallDwarn;
+
+    bool closeattack =false;
+    bool longattack = false;
+
+    //public GameObject life;
+    //public GameObject score;
+    //public GameObject power;
+
+    bool isThink;
+
+    public int patternIndex;
+    public int curPatternCount;
+    public int[] maxPatternCount;
+
+    
+    SpriteRenderer renderer;
+
+    void Awake()
+    {
+        isThink = true;
+       
+        renderer = GetComponent<SpriteRenderer>();
+
+        Invoke("Think", 10f);
+    }
+
+    private void Update()
+    {
+        
+    }
+
+    //void Returnhit()
+    //{
+    //    renderer.color = new Color(1, 1, 1, 1);
+    //}
+
+    public void HitEnemy(int dam)
+    {
+        health -= dam;
+        
+    }
+
+    void StopThink()
+    {
+        isThink = false;
+    }
+
+    void Think()
+    {
+        if (isThink)
+        {
+            patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
+            curPatternCount = 0;
+           
+            switch (patternIndex)
+            {
+                case 0:
+                    vinespawnAwarn.SetActive(true);
+                    LongAttack_A();
+                    break;
+                case 1:
+                    LongAttack_B();
+                    break;
+                case 2:
+                    vinespawnBwarn.SetActive(true);
+                    CloseAttack_A();
+                    break;
+                case 3:
+                    CloseAttack_B();
+                    break;
+            }
+        }
+    }
+    void LongAttack_A()
+    {
+        closeattack = false;
+        longattack = true;
+        
+        Invoke("VineA", 3f);
+        vinespawnBwarn.SetActive(false);
+        vinespawnB.SetActive(false);
+        waterwallA.SetActive(false);
+        waterwallB.SetActive(false);
+        waterwallD.SetActive(false);
+        waterwallAwarn.SetActive(false);
+        waterwallBwarn.SetActive(false);
+        waterwallCwarn.SetActive(true);
+        Invoke("WaterC", 1f);
+        waterwallDwarn.SetActive(false);
+        //GameObject bulletR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.3f, transform.rotation);
+
+        //Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
+
+        ////Vector3 dicVecR = player.transform.position - transform.position;
+        //rigidR.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
+
+
+        curPatternCount++;
+
+        //if (curPatternCount < maxPatternCount[patternIndex])
+        //    Invoke("LongAttack_A", 4);
+
+        //else
+            Invoke("Think", 20f);
+
+    }
+
+    void LongAttack_B()
+    {
+        closeattack = false;
+        longattack = false;
+       
+        vinespawnBwarn.SetActive(false);
+        vinespawnB.SetActive(false);
+        waterwallA.SetActive(false);
+        waterwallB.SetActive(false);
+        waterwallC.SetActive(false);
+        waterwallD.SetActive(false);
+        waterwallAwarn.SetActive(false);
+        waterwallBwarn.SetActive(false);
+        waterwallCwarn.SetActive(false);
+        waterwallDwarn.SetActive(false);
+
+        int roundNumA = 41;
+        for (int index = 0; index < roundNumA; index++)
+        {
+
+            //GameObject bullet = Instantiate(bulletObjA, transform.position, Quaternion.identity);
+            GameObject bullet = GameManager.Instance.pool.Get(0);
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = Quaternion.identity;
+            Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+            Vector2 dicVec = new Vector2(Mathf.Cos(Mathf.PI * 2 * index / roundNumA),
+                Mathf.Sin(Mathf.PI * 2 * index / roundNumA));
+
+            rigid.AddForce(dicVec.normalized * 6, ForceMode2D.Impulse);
+
+            Vector3 rotVec = Vector3.forward * 360 * index / roundNumA + Vector3.forward * 90;
+            bullet.transform.Rotate(rotVec);
+        }
+
+        curPatternCount++;
+
+        if (curPatternCount < maxPatternCount[patternIndex])
+            Invoke("LongAttack_B", 0.3f);
+
+        else
+            Invoke("Think", 5);
+
+    }
+    void CloseAttack_A()
+    {
+        closeattack = true;
+        longattack = false;
+
+        vinespawnAwarn.SetActive(false);
+        vinespawnA.SetActive(false);
+        
+        Invoke("VineB", 3f);
+        waterwallAwarn.SetActive(true);
+        Invoke("WaterA", 1f);
+        
+        waterwallB.SetActive(false);
+        waterwallC.SetActive(false);
+        waterwallD.SetActive(false);
+        waterwallBwarn.SetActive(false);
+        waterwallCwarn.SetActive(false);
+        waterwallDwarn.SetActive(false);
+
+        curPatternCount++;
+
+        //if (curPatternCount < maxPatternCount[patternIndex])
+        //    Invoke("CloseAttack_A", 4f);
+
+        //else
+            Invoke("Think", 20f);
+    }
+
+    void CloseAttack_B()
+    {
+        closeattack = false;
+        longattack = false;
+        vinespawnAwarn.SetActive(false);
+        vinespawnA.SetActive(false);
+        
+        Invoke("VineB", 3f);
+        waterwallAwarn.SetActive(false);
+        waterwallBwarn.SetActive(false);
+        waterwallCwarn.SetActive(false);
+        waterwallDwarn.SetActive(false);
+        waterwallA.SetActive(false);
+        waterwallB.SetActive(false);
+        waterwallC.SetActive(false);
+        waterwallD.SetActive(false);
+
+        int roundNumA = 41;
+        for (int index = 0; index < roundNumA; index++)
+        {
+
+            //GameObject bullet = Instantiate(bulletObjA, transform.position, Quaternion.identity);
+            GameObject bullet = GameManager.Instance.pool.Get(0);
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = Quaternion.identity;
+            Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+            Vector2 dicVec = new Vector2(Mathf.Cos(Mathf.PI * 2 * index / roundNumA),
+                Mathf.Sin(Mathf.PI * 2 * index / roundNumA));
+
+            rigid.AddForce(dicVec.normalized * 6, ForceMode2D.Impulse);
+
+            Vector3 rotVec = Vector3.forward * 360 * index / roundNumA + Vector3.forward * 90;
+            bullet.transform.Rotate(rotVec);
+        }
+
+        curPatternCount++;
+
+        if (curPatternCount < maxPatternCount[patternIndex])
+            Invoke("CloseAttack_B", 0.3f);
+
+        else
+            Invoke("Think",5);
+    }
+
+    private void VineA()
+    {
+        vinespawnA.SetActive(true);
+        vinespawnAwarn.SetActive(false);
+    }
+    private void VineB()
+    {
+        vinespawnB.SetActive(true);
+        vinespawnBwarn.SetActive(false);
+    }
+    private void WaterA()
+    {if (closeattack)
+        {
+            waterwallA.SetActive(true);
+            waterwallAwarn.SetActive(false);
+            waterwallB.SetActive(false);
+            waterwallBwarn.SetActive(true);
+            Invoke("WaterB", 2f);
+        }
+    }
+    private void WaterB()
+    {
+        if (closeattack)
+        {
+            waterwallB.SetActive(true);
+            waterwallBwarn.SetActive(false);
+            waterwallA.SetActive(false);
+            waterwallAwarn.SetActive(true);
+            Invoke("WaterA", 2f);
+        }
+    }
+    private void WaterC()
+    {
+        if (longattack)
+        {
+            waterwallC.SetActive(true);
+            waterwallCwarn.SetActive(false);
+            waterwallD.SetActive(false);
+            waterwallDwarn.SetActive(true);
+            Invoke("WaterD", 2f);
+        }
+    }
+    private void WaterD()
+    {
+        if (longattack)
+        {
+            waterwallD.SetActive(true);
+            waterwallDwarn.SetActive(false);
+            waterwallC.SetActive(false);
+            waterwallCwarn.SetActive(true);
+            Invoke("WaterC", 2f);
+        }
+    }
+
+    
+
+
+
+
+}

@@ -26,16 +26,12 @@ public class MonsterController : MonoBehaviour
     public Transform target;  //몬스터가 추적하는 플레이어 위치값 변수
     public Vector3 direction;
     public GameObject player;
-    public GameObject bulletObjA;
-    public GameObject tornado;
-    public float runSpeed;
-    private float applyRunSpeed;
-    private bool applyRunFlag = false;
+
 
     public int walkCount;
     private int currentWalkCount;
 
-    private bool canMove = true;
+
     private Vector3 vector;
 
 
@@ -74,7 +70,7 @@ public class MonsterController : MonoBehaviour
                 //Die();
                 break;
         }
-        
+
         Reload();
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.velocity = Vector3.zero; //충돌시에 떨림과 밀림 방지
@@ -89,7 +85,7 @@ public class MonsterController : MonoBehaviour
         // Player와 객체 간의 거리 계산
         float distance = Vector3.Distance(target.position, transform.position);
         // 일정거리 안에 있을 시, 해당 방향으로 무빙
-        if (enemyName == "Mouse")
+        if (enemyName == "Mouse" || enemyName == "Fox")
         {
             if (distance < 10.0f)
             {
@@ -99,7 +95,7 @@ public class MonsterController : MonoBehaviour
 
             }
         }
-        if (enemyName == "Bat")
+        else if (enemyName == "Bat")
         {
             if (distance < 10.0f)
             {
@@ -109,6 +105,7 @@ public class MonsterController : MonoBehaviour
 
             }
         }
+
     }
     public void Move()   //플레이어가 일정 범위 안에 들어오면 따라오게 만드는 함수
     {
@@ -146,6 +143,19 @@ public class MonsterController : MonoBehaviour
                     Debug.Log("상태전환 : Move -> Attack");
                 }
             }
+            else if (enemyName == "Fox")
+            {
+                if (distance <= 10.0f && distance > 1.5f)
+                {
+                    StartCoroutine(MoveCoroutine());
+                    m_State = EnemyState.Move;
+                }
+                else if (distance <= 1.5f)
+                {
+                    m_State = EnemyState.Attack;
+                    Debug.Log("상태전환 : Move -> Attack");
+                }
+            }
         }
 
     }
@@ -166,7 +176,10 @@ public class MonsterController : MonoBehaviour
             if (distance <= 1.5f)
             {
                 target = GameObject.Find("Player").transform;
-                GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
+                GameObject bullet = GameManager.Instance.pool.Get(1);
+                bullet.transform.position = transform.position;
+                bullet.transform.rotation = transform.rotation;
+                //GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
                 Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
                 Vector3 dicVec = target.transform.position - transform.position;
                 rigid.AddForce(dicVec * 1f, ForceMode2D.Impulse);
@@ -182,11 +195,14 @@ public class MonsterController : MonoBehaviour
             if (distance <= 3.0f)
             {
                 target = GameObject.Find("Player").transform;
-                GameObject bullet = Instantiate(tornado, transform.position, transform.rotation);
+                GameObject bullet = GameManager.Instance.pool.Get(4);
+                bullet.transform.position = transform.position;
+                bullet.transform.rotation = transform.rotation;
+                //GameObject bullet = Instantiate(tornado, transform.position, transform.rotation);
                 Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
                 Vector3 dicVec = target.transform.position - transform.position;
                 rigid.AddForce(dicVec * 1f, ForceMode2D.Impulse);
-               
+
             }
             else
             {
@@ -194,7 +210,26 @@ public class MonsterController : MonoBehaviour
                 Debug.Log("상태전환 : Attack -> Move");
             }
         }
-       
+        else if (enemyName == "Fox")
+        {
+            if (distance <= 1.5f)
+            {
+                target = GameObject.Find("Player").transform;
+                //GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
+                GameObject bullet = GameManager.Instance.pool.Get(3);
+                bullet.transform.position = transform.position;
+                bullet.transform.rotation = transform.rotation;
+                Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+                Vector3 dicVec = target.transform.position - transform.position;
+                rigid.AddForce(dicVec * 1f, ForceMode2D.Impulse);
+            }
+            else
+            {
+                m_State = EnemyState.Move;
+                Debug.Log("상태전환 : Attack -> Move");
+            }
+        }
+
         curShotDelay = 0;
     }
     public void HitEnemy(int dam)
@@ -275,6 +310,6 @@ public class MonsterController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    
-  
+
+
 }

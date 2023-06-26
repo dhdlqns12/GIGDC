@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tornado : MonoBehaviour
+public class Waterwall : MonoBehaviour
 {
-    public float damage;
+    int damage = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +16,12 @@ public class Tornado : MonoBehaviour
     {
         
     }
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            other.GetComponent<PlayerController>().Slow(damage);
+            other.GetComponent<PlayerController>().OnHit(damage);
         }
     }
 }

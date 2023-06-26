@@ -5,16 +5,16 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     public string enemyName;
-    public int damage;
+    int damage;
     void Start()
     {
-        
+
     }
 
-    
+
     void Update()
     {
-        Invoke("Destroy", 0.7f);
+        //Invoke("Destroy", 0.7f);
     }
 
     public void Destroy()
@@ -24,9 +24,30 @@ public class EnemyAttack : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            other.GetComponent<PlayerController>().OnHit(damage);
+            if (enemyName == "Mouse")
+            {
+                damage = 1;
+                other.GetComponent<PlayerController>().OnHit(damage);
+            }
+            else if (enemyName == "Bat")
+            {
+                damage = 2;
+                other.GetComponent<PlayerController>().OnHit(damage);
+            }
+            else if (enemyName == "Fox")
+            {
+                damage = 3;
+                other.GetComponent<PlayerController>().OnHit(damage);
+            }
+
+            else if (enemyName == "Boss")
+            {
+                damage = 5;
+                other.GetComponent<PlayerController>().OnHit(damage);
+            }
+
         }
     }
 }

@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa7d0100c1f52d439853a05b4be99ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: Claw
+  enemyName: Mouse
   damage: 1
 --- !u!61 &8373389173123631402
 BoxCollider2D:

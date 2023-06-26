@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6365481580564419348
 SpriteRenderer:
@@ -152,15 +152,12 @@ MonoBehaviour:
   speed: 4
   health: 5
   maxShotDelay: 2
-  maxTorDelay: 0
   curShotDelay: 0
-  curTorDelay: 0
   target: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
-  bulletObjA: {fileID: 729916186029565345, guid: bd511cac66430614882740fb94fbe98a, type: 3}
-  tornado: {fileID: 7249490711939488221, guid: 8c8969dfa4a8318438803a322765ed79, type: 3}
-  runSpeed: 1
+  bulletObjA: {fileID: 729916186029565345, guid: 8508068539b83184b904cb0a85e1a3f6, type: 3}
+  tornado: {fileID: 7249490711939488221, guid: 0a58d477d7a25b5469662e46baab33a3, type: 3}
   walkCount: 2
 --- !u!61 &4709898948372277890
 BoxCollider2D:
@@ -194,7 +191,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0072396994, y: -0.000000014901161}
+  m_Offset: {x: -0.0008583255, y: -0.005398676}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -205,5 +202,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.30687642, y: 0.23135582}
+  m_Size: {x: 0.23399448, y: 0.12608202}
   m_EdgeRadius: 0

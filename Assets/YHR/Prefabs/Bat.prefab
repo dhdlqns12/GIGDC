@@ -30,11 +30,11 @@ Transform:
   m_GameObject: {fileID: 1950698883757017860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &417302602517853118
 SpriteRenderer:
@@ -125,15 +125,12 @@ MonoBehaviour:
   speed: 5
   health: 5
   maxShotDelay: 1
-  maxTorDelay: 3
   curShotDelay: 0
-  curTorDelay: 0
   target: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
-  bulletObjA: {fileID: 729916186029565345, guid: bd511cac66430614882740fb94fbe98a, type: 3}
-  tornado: {fileID: 7249490711939488221, guid: 8c8969dfa4a8318438803a322765ed79, type: 3}
-  runSpeed: 1
+  bulletObjA: {fileID: 729916186029565345, guid: 8508068539b83184b904cb0a85e1a3f6, type: 3}
+  tornado: {fileID: 7249490711939488221, guid: 0a58d477d7a25b5469662e46baab33a3, type: 3}
   walkCount: 2
 --- !u!50 &5248833681587494418
 Rigidbody2D:
@@ -194,7 +191,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0025023222, y: -0.013762735}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -205,5 +202,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.27, y: 0.22}
+  m_Size: {x: 0.1523912, y: 0.13241893}
   m_EdgeRadius: 0
