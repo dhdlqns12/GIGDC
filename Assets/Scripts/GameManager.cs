@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public GameObject mainCamera;
     public GameObject playerCamera;
 
+    public int mazeCount = 0;
+
 
     private void Awake()    //╫л╠шео
     {

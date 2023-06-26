@@ -13,6 +13,7 @@ public class BirdGun_mini : MonoBehaviour
     public GameObject player;   //플레이어 연결
     public GameObject miniG;    //미니게임 이동 오브젝트
 
+    public GameObject wolf1;
 
     void Update()
     {
@@ -36,6 +37,7 @@ public class BirdGun_mini : MonoBehaviour
             miniG.SetActive(false);
             mainCamera.SetActive(false);
             playerCamera.SetActive(true);
+            wolf1.SetActive(true);
             //Camera.main.transform.position = new Vector3(cameraPos.position.x, cameraPos.position.y, -10);
 
         }
