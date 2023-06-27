@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     public float runSpeed;
     public int walkCount;
     private int currentWalkCount;
-    private bool canMove = true;
+    public bool canMove = true;
 
 
 
@@ -40,6 +40,11 @@ public class PlayerController : MonoBehaviour
     //애니메이션 변수들
     Animator anim;
     public Vector2 moveDiriection = new Vector2(1, 0);  //애니메이션에 사용할 방향
+
+    private void OnEnable()
+    {
+        canMove = true;
+    }
 
     private void Start()
     {
