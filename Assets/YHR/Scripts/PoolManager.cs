@@ -8,16 +8,18 @@ public class PoolManager : MonoBehaviour
 
     List<GameObject>[] pools;
 
+
     private void Awake()
     {
         pools = new List<GameObject>[prefabs.Length];
 
-        for (int index = 0; index < pools.Length; index ++)
+        for (int index = 0; index < pools.Length; index++)
         {
             pools[index] = new List<GameObject>();
         }
 
     }
+
 
     public GameObject Get(int index)
     {
@@ -25,14 +27,22 @@ public class PoolManager : MonoBehaviour
 
         foreach (GameObject item in pools[index])
         {
-            if(!item.activeSelf)
+            if (item == null)
             {
+                select.SetActive(false);
+            }
+            else if (!item.activeSelf && item != null)
+            {
+                if (item == null)
+                    break;
                 select = item;
-                select.SetActive(true);
+                if (select != null)
+                    select.SetActive(true);
                 break;
             }
+
         }
-        if(!select)
+        if (!select)
         {
             select = Instantiate(prefabs[index], transform);
             pools[index].Add(select);

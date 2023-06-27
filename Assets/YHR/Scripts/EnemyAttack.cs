@@ -15,11 +15,32 @@ public class EnemyAttack : MonoBehaviour
     void Update()
     {
         //Invoke("Destroy", 0.7f);
+        if (enemyName == "Mouse")
+        {
+            Invoke("off", 0.7f);
+        }
+        else if (enemyName == "Bat")
+        {
+            Invoke("off", 0.7f);
+        }
+        else if (enemyName == "Fox")
+        {
+            Invoke("off", 0.4f);
+        }
+
+        else if (enemyName == "Boss")
+        {
+            Invoke("off", 1.5f);
+        }
     }
 
     public void Destroy()
     {
         Destroy(gameObject);
+    }
+    public void off()
+    {
+        gameObject.SetActive(false);
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -30,6 +51,7 @@ public class EnemyAttack : MonoBehaviour
             {
                 damage = 1;
                 other.GetComponent<PlayerController>().OnHit(damage);
+
             }
             else if (enemyName == "Bat")
             {
@@ -47,7 +69,7 @@ public class EnemyAttack : MonoBehaviour
                 damage = 5;
                 other.GetComponent<PlayerController>().OnHit(damage);
             }
-
+            gameObject.SetActive(false);
         }
     }
 }
