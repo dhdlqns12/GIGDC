@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 1542042404234182298}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6ee911122633fe64ea13fa1af33f080d, type: 2}
+  m_Controller: {fileID: 9100000, guid: e00809e317e73474eb84e95fb2fb1835, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -130,6 +130,8 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
   walkCount: 2
+  anim: {fileID: 0}
+  moveDiriection: {x: 1, y: 0}
 --- !u!61 &3198975908584875102
 BoxCollider2D:
   m_ObjectHideFlags: 0

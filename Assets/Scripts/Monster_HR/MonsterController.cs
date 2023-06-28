@@ -38,13 +38,16 @@ public class MonsterController : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
 
-
+    public Animator anim;
+    public Vector2 moveDiriection = new Vector2(1, 0);
 
     void Awake()
     {
         m_State = EnemyState.Idle;
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        anim = GetComponent<Animator>();
     }
 
 
@@ -123,6 +126,9 @@ public class MonsterController : MonoBehaviour
                 {
                     StartCoroutine(MoveCoroutine());
                     m_State = EnemyState.Move;
+
+
+
                 }
                 else if (distance <= 1.5f)
                 {
@@ -296,6 +302,17 @@ public class MonsterController : MonoBehaviour
         float distance = Vector3.Distance(target.position, transform.position);
 
         transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+
+        if (!Mathf.Approximately(direction.x, 0) || !Mathf.Approximately(direction.y, 0))
+        {
+            moveDiriection.Set(direction.x, direction.y);
+            moveDiriection.Normalize();
+        }
+
+        anim.SetFloat("xDir", moveDiriection.x);
+        anim.SetFloat("yDir", moveDiriection.y);
+        anim.SetFloat("speed", direction.magnitude);
+
 
         yield return new WaitForSeconds(0.2f);
 

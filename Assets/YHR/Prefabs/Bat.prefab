@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 1950698883757017860}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 557c0a69dca0ac247b43f5af9b5b1e1f, type: 2}
+  m_Controller: {fileID: 9100000, guid: dfc7741d1976374499dfa8282da566de, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -129,9 +129,9 @@ MonoBehaviour:
   target: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
-  bulletObjA: {fileID: 729916186029565345, guid: 8508068539b83184b904cb0a85e1a3f6, type: 3}
-  tornado: {fileID: 7249490711939488221, guid: 0a58d477d7a25b5469662e46baab33a3, type: 3}
   walkCount: 2
+  anim: {fileID: 0}
+  moveDiriection: {x: 1, y: 0}
 --- !u!50 &5248833681587494418
 Rigidbody2D:
   serializedVersion: 4
