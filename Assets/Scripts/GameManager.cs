@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,13 @@ public class GameManager : MonoBehaviour
     public int mazeCount = 0;
 
 
+    public GameObject IMG;
+    public Button BT;
+    PlayerController playerController;
+    public float hp;
+    public Slider hpSlider;
+
+
     private void Awake()    //싱글턴
     {
         if (Instance != null)
@@ -25,6 +33,7 @@ public class GameManager : MonoBehaviour
         else
             Instance = this;
 
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     public bool key = true;     // 함정발동 변수
@@ -34,7 +43,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            IMG.SetActive(true);
 
+            if (IMG == true)
+            {
+                Time.timeScale = 0f;
+            }
+        }
+
+        Hp_Bar();
         //if (fruitCount == 4)    //미니게임에서 메인게임으로
         //{
         //    player.SetActive(true);
@@ -46,6 +65,10 @@ public class GameManager : MonoBehaviour
 
         //}
 
+    }
+    private void Hp_Bar()
+    {
+        hpSlider.value = Mathf.Lerp(hpSlider.value, playerController.health / 10, Time.deltaTime * 100);
     }
 
 }

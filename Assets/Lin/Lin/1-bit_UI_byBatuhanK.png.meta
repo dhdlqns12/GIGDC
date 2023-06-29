@@ -1,0 +1,976 @@
+fileFormatVersion: 2
+guid: f283791136af15746af462f9fa631ae4
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_6
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 155
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db023336d1d63ed4bbd0430ef1b33ada
+      internalID: -1818935332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_0
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 54
+        width: 184
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f9d1feabb8da264faa180d1d6f7ecd8
+      internalID: -985081858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_1
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 156
+        width: 24
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92242ebd42d62c942a0470dfd784e682
+      internalID: 1790419408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_2
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 178
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a283e11215856142adb9d559e29999b
+      internalID: 900435396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_3
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 154
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cefda6c1d2e36247a10ae15a3b0fcd5
+      internalID: 507783965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_4
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 229
+        width: 25
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d26b3d17c6324b44db169d4f7e921129
+      internalID: -71401591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_5
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 204
+        width: 23
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54bad7d060ddc164e9559ae90cd4f46a
+      internalID: -1665752592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_7
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 227
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d70aaecc06f7110499a14d678cb9d5f9
+      internalID: 896624300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_8
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 226
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6f080dfe91fbe5478d7bcd1f12158b7
+      internalID: 1545606574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_9
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 228
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e51cc07de3acfd64caa5a4c75065c3b7
+      internalID: 1367261345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_10
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 203
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9162efc7dffc7048a96841c5543f723
+      internalID: 2106217849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_11
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 203
+        width: 28
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5770a3c43c8197b42b3f4cf7143aa54e
+      internalID: -1482308839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_12
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 178
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ed9d2eda601bf34d8395db791fb8ea6
+      internalID: -1542140718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_13
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 179
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 947a191edf9a18f4d8fb4914b6f5713f
+      internalID: -1056229238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_14
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 155
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 128f8b5a490336047923f8194182350a
+      internalID: 192805854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_15
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 228
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdb4f5a30e275d14a8777a19d1359deb
+      internalID: 961499576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_16
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 158
+        width: 45
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 574bb0f4a75a3c746825e576b66a3034
+      internalID: -917982946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_17
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 180
+        width: 57
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1805db41164188443a7a177a30774c64
+      internalID: -102835504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_18
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 202
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3593b1ee23586b4497cf333f1a240ef
+      internalID: 829718678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_19
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 202
+        width: 26
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1edf6d3cb01e677428af16878b27ae75
+      internalID: 1785076868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_20
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 212
+        width: 26
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c422c449487bca74dba3e10ec6fe9675
+      internalID: -1426813715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_21
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 160
+        width: 46
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e46f014f342e9f243ad8794a1ed30933
+      internalID: -1870150389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_22
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 17
+        width: 20
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 207ffe64934ae4645add1846686b8312
+      internalID: 974891516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_23
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 12
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcd5bd9267cdea940a053771fc39084a
+      internalID: -386791214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_24
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 11
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e686781b261b96c4fa7f24696a18b5c8
+      internalID: 244996457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_25
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 10
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69d0082b4a78dfc409965194e9a6aa93
+      internalID: -318965916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_26
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 51
+        width: 19
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85e03aa03eb6cea43964022dce0f75fa
+      internalID: 455632816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_27
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 52
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5e4214c926a59242b1c9bc9f1abd2f6
+      internalID: -7513534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_28
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 173
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f39a0c40117f6242a6c1206a3b18807
+      internalID: 1847211213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_29
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 174
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c599ed392f50ede44873339abcc91809
+      internalID: 683098769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_30
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 158
+        width: 57
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2453df22de0d6764da61817c008fef1d
+      internalID: -144914898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_31
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 149
+        width: 58
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0fc5aaba3f935e42a0b9f1af97d30f9
+      internalID: -649589447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_32
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 227
+        width: 64
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdee9879a60faca4f9cc4763d8fc2f4a
+      internalID: -259487461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_33
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 131
+        width: 28
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c376efd854b6b5c468c3b5e3f2c3a46e
+      internalID: -912177736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_34
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 140
+        width: 27
+        height: 3
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9587c55e6a05bf5418d4cc80605fe16b
+      internalID: 1370787464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_35
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 145
+        width: 29
+        height: 3
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6163b35e3bb714b4e80c95e6a7dfb7d2
+      internalID: -839082271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_36
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 124
+        width: 28
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96e6051e7a3163849be4522ef096a953
+      internalID: 1833592408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_37
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 113
+        width: 27
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afb1d1122635ace489be0c7fee785f6a
+      internalID: 1056593798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      1-bit_UI_byBatuhanK_0: -985081858
+      1-bit_UI_byBatuhanK_1: 1790419408
+      1-bit_UI_byBatuhanK_10: 2106217849
+      1-bit_UI_byBatuhanK_11: -1482308839
+      1-bit_UI_byBatuhanK_12: -1542140718
+      1-bit_UI_byBatuhanK_13: -1056229238
+      1-bit_UI_byBatuhanK_14: 192805854
+      1-bit_UI_byBatuhanK_15: 961499576
+      1-bit_UI_byBatuhanK_16: -917982946
+      1-bit_UI_byBatuhanK_17: -102835504
+      1-bit_UI_byBatuhanK_18: 829718678
+      1-bit_UI_byBatuhanK_19: 1785076868
+      1-bit_UI_byBatuhanK_2: 900435396
+      1-bit_UI_byBatuhanK_20: -1426813715
+      1-bit_UI_byBatuhanK_21: -1870150389
+      1-bit_UI_byBatuhanK_22: 974891516
+      1-bit_UI_byBatuhanK_23: -386791214
+      1-bit_UI_byBatuhanK_24: 244996457
+      1-bit_UI_byBatuhanK_25: -318965916
+      1-bit_UI_byBatuhanK_26: 455632816
+      1-bit_UI_byBatuhanK_27: -7513534
+      1-bit_UI_byBatuhanK_28: 1847211213
+      1-bit_UI_byBatuhanK_29: 683098769
+      1-bit_UI_byBatuhanK_3: 507783965
+      1-bit_UI_byBatuhanK_30: -144914898
+      1-bit_UI_byBatuhanK_31: -649589447
+      1-bit_UI_byBatuhanK_32: -259487461
+      1-bit_UI_byBatuhanK_33: -912177736
+      1-bit_UI_byBatuhanK_34: 1370787464
+      1-bit_UI_byBatuhanK_35: -839082271
+      1-bit_UI_byBatuhanK_36: 1833592408
+      1-bit_UI_byBatuhanK_37: 1056593798
+      1-bit_UI_byBatuhanK_4: -71401591
+      1-bit_UI_byBatuhanK_5: -1665752592
+      1-bit_UI_byBatuhanK_6: -1818935332
+      1-bit_UI_byBatuhanK_7: 896624300
+      1-bit_UI_byBatuhanK_8: 1545606574
+      1-bit_UI_byBatuhanK_9: 1367261345
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

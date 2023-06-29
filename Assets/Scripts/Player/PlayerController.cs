@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     Vector2 Mouseposition;
     float bulletSpeed = 100f;
 
-    float health = 10f;
+    public float health = 10f;
 
     public Transform pos; //근접공격 범위 지정 변수1
     public Vector2 boxSize;  //근접공격 범위 지정 변수2
