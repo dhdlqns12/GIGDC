@@ -8,6 +8,7 @@ public class EnterDoor : MonoBehaviour
     public GameObject mainCamera;
     public Transform cameraPos;
     public GameObject playerCamera;
+    public PlayerController pr;
 
     public int value = 0;
 
@@ -28,15 +29,18 @@ public class EnterDoor : MonoBehaviour
             {
                 mainCamera.SetActive(false);
                 playerCamera.SetActive(true);
+                pr.GetComponent<PlayerController>().ismaincam = false;
+
             }
-            else if(value == 1)
+            else if (value == 1)
             {
                 mainCamera.SetActive(true);
                 playerCamera.SetActive(false);
+                pr.GetComponent<PlayerController>().ismaincam = true;
             }
 
             Camera.main.transform.position = new Vector3(cameraPos.position.x, cameraPos.position.y, -10);
-
+            //pr.GetComponent<PlayerController>().cam.transform.position = new Vector3(cameraPos.position.x, cameraPos.position.y, -10);
 
         }
     }

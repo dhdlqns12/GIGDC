@@ -5,9 +5,10 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
 
-    public float speed = 0.5f;
-    public int health;
-  
+
+    public int health = 100;
+
+
     public GameObject bulletObjA;
     public GameObject vinespawnA;
     public GameObject vinespawnB;
@@ -21,8 +22,9 @@ public class BossController : MonoBehaviour
     public GameObject waterwallBwarn;
     public GameObject waterwallCwarn;
     public GameObject waterwallDwarn;
+    public GameObject effect;
 
-    bool closeattack =false;
+    bool closeattack = false;
     bool longattack = false;
 
     //public GameObject life;
@@ -35,13 +37,13 @@ public class BossController : MonoBehaviour
     public int curPatternCount;
     public int[] maxPatternCount;
 
-    
+
     SpriteRenderer renderer;
 
     void Awake()
     {
         isThink = true;
-       
+
         renderer = GetComponent<SpriteRenderer>();
 
         Invoke("Think", 10f);
@@ -49,18 +51,25 @@ public class BossController : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
-    //void Returnhit()
-    //{
-    //    renderer.color = new Color(1, 1, 1, 1);
-    //}
+    void Returnhit()
+    {
+        renderer.color = new Color(1, 1, 1, 1);
+    }
 
     public void HitEnemy(int dam)
     {
         health -= dam;
-        
+        Instantiate(effect, transform.position, transform.rotation);
+        if (health <= 0)
+        {
+            Die();
+        }
+
+        renderer.color = new Color(1, 0, 0, 0.5f);
+        Invoke("Returnhit", 0.6f);
     }
 
     void StopThink()
@@ -74,7 +83,7 @@ public class BossController : MonoBehaviour
         {
             patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
             curPatternCount = 0;
-           
+
             switch (patternIndex)
             {
                 case 0:
@@ -98,7 +107,7 @@ public class BossController : MonoBehaviour
     {
         closeattack = false;
         longattack = true;
-        
+
         Invoke("VineA", 3f);
         vinespawnBwarn.SetActive(false);
         vinespawnB.SetActive(false);
@@ -120,11 +129,7 @@ public class BossController : MonoBehaviour
 
         curPatternCount++;
 
-        //if (curPatternCount < maxPatternCount[patternIndex])
-        //    Invoke("LongAttack_A", 4);
-
-        //else
-            Invoke("Think", 20f);
+        Invoke("Think", 20f);
 
     }
 
@@ -132,7 +137,7 @@ public class BossController : MonoBehaviour
     {
         closeattack = false;
         longattack = false;
-       
+
         vinespawnBwarn.SetActive(false);
         vinespawnB.SetActive(false);
         waterwallA.SetActive(false);
@@ -178,11 +183,11 @@ public class BossController : MonoBehaviour
 
         vinespawnAwarn.SetActive(false);
         vinespawnA.SetActive(false);
-        
+
         Invoke("VineB", 3f);
         waterwallAwarn.SetActive(true);
         Invoke("WaterA", 1f);
-        
+
         waterwallB.SetActive(false);
         waterwallC.SetActive(false);
         waterwallD.SetActive(false);
@@ -192,11 +197,7 @@ public class BossController : MonoBehaviour
 
         curPatternCount++;
 
-        //if (curPatternCount < maxPatternCount[patternIndex])
-        //    Invoke("CloseAttack_A", 4f);
-
-        //else
-            Invoke("Think", 20f);
+        Invoke("Think", 20f);
     }
 
     void CloseAttack_B()
@@ -205,7 +206,7 @@ public class BossController : MonoBehaviour
         longattack = false;
         vinespawnAwarn.SetActive(false);
         vinespawnA.SetActive(false);
-        
+
         Invoke("VineB", 3f);
         waterwallAwarn.SetActive(false);
         waterwallBwarn.SetActive(false);
@@ -240,7 +241,7 @@ public class BossController : MonoBehaviour
             Invoke("CloseAttack_B", 0.3f);
 
         else
-            Invoke("Think",5);
+            Invoke("Think", 5);
     }
 
     private void VineA()
@@ -254,7 +255,8 @@ public class BossController : MonoBehaviour
         vinespawnBwarn.SetActive(false);
     }
     private void WaterA()
-    {if (closeattack)
+    {
+        if (closeattack)
         {
             waterwallA.SetActive(true);
             waterwallAwarn.SetActive(false);
@@ -296,10 +298,17 @@ public class BossController : MonoBehaviour
             Invoke("WaterC", 2f);
         }
     }
+    void Die()
+    {
+        StopAllCoroutines();
 
-    
-
-
-
+        StartCoroutine(_Die());
+    }
+    IEnumerator _Die()
+    {
+        yield return new WaitForSeconds(1f);
+        Debug.Log("DIE !");
+        Destroy(gameObject);
+    }
 
 }

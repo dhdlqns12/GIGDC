@@ -156,6 +156,7 @@ MonoBehaviour:
   target: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
+  effect: {fileID: 296332847691886502, guid: b76bd5ab72c329441aa589871df0433a, type: 3}
   walkCount: 2
   anim: {fileID: 0}
   moveDiriection: {x: 1, y: 0}

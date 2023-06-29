@@ -26,6 +26,7 @@ public class MonsterController : MonoBehaviour
     public Transform target;  //몬스터가 추적하는 플레이어 위치값 변수
     public Vector3 direction;
     public GameObject player;
+    public GameObject effect;
 
 
     public int walkCount;
@@ -246,6 +247,8 @@ public class MonsterController : MonoBehaviour
         }
 
         health -= dam;
+        Instantiate(effect, transform.position, transform.rotation);
+
 
         if (health > 0)
         {
@@ -254,6 +257,7 @@ public class MonsterController : MonoBehaviour
 
 
             Damaged();
+            Invoke("returnhit", 0.7f);
         }
         else
         {
@@ -263,6 +267,11 @@ public class MonsterController : MonoBehaviour
 
             Die();
         }
+    }
+
+    void returnhit()
+    {
+        spriteRenderer.color = new Color(1, 1, 1, 1);
     }
 
     void Reload()
@@ -276,10 +285,10 @@ public class MonsterController : MonoBehaviour
     }
     IEnumerator Damage()
     {
-
+        spriteRenderer.color = new Color(1, 0, 0, 0.7f);
         // 피격 애니메이션 실행
         // 피격 애니메이션 동작시간만큼 딜레이(0.5 초 동작시간으로 변경해야함)
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
 
         m_State = EnemyState.Move;
         Debug.Log("상태 전환 : Damaged -> Move");

@@ -14,21 +14,26 @@ public class PlayerController : MonoBehaviour
     public float weapon;
     public GameObject bullet;
     public GameObject bulletpos;
-    public Vector2 PlayerPos;
-    Vector2 Mouseposition;
+    public Vector3 PlayerPos;
+    Vector3 Mouseposition;
     float bulletSpeed = 100f;
 
-    public float health = 10f;
+    public float health = 300f;
 
     public Transform pos; //근접공격 범위 지정 변수1
     public Vector2 boxSize;  //근접공격 범위 지정 변수2
     public Transform target;
     public float speed = 40f;
+    public float Maxspeed = 40f;
     private Vector3 vector;
-    public float runSpeed;
-    public int walkCount;
-    private int currentWalkCount;
     public bool canMove = true;
+
+    
+    SpriteRenderer spriteRenderer;
+    public Camera cam;
+    public Camera mainCamera;
+    public Camera playerCamera;
+    public bool ismaincam = true;
 
     public MyGameManager myGameManager;
     Vector3 dirVec;
@@ -37,12 +42,6 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigid;
     GameObject scanObject;
 
-
-
-
-
-    Camera cam;
-    Bullet BBullet;
 
     //애니메이션 변수들
     Animator anim;
@@ -55,17 +54,22 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        cam = Camera.main;
-        anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+        cam = mainCamera;
     }
     void Update()
     {
+
+        
+        
         //if(health <= 0)
         //{
         //    Die();
         //    return;
         //}
+        CheckCam();
         Attack();
         Reload();
         Die();
@@ -78,24 +82,6 @@ public class PlayerController : MonoBehaviour
 
         h = Input.GetAxisRaw("Horizontal");
         v = Input.GetAxisRaw("Vertical");
-
-        if (canMove)
-        {
-            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-            {
-                canMove = false;
-                StartCoroutine(MoveCoroutine());
-            }
-
-            Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-            rigidbody.velocity = Vector3.zero;   //충돌시에 떨림과 밀림 방지
-
-        }
-
-
-        Mouseposition = Input.mousePosition;
-        Mouseposition = cam.ScreenToWorldPoint(Mouseposition);
-
 
         //플레이어 애니메이션 함수
         float horizontal = Input.GetAxis("Horizontal");
@@ -142,8 +128,36 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void CheckCam()
+    {
+        if (ismaincam)
+        {
+            mainCamera = Camera.main;
+            cam = mainCamera;
+
+        }
+        else
+        {
+            playerCamera = Camera.main;
+            cam = playerCamera;
+        }
+    }
+
     private void FixedUpdate()
     {
+        Mouseposition = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.farClipPlane));
+        if (canMove)
+        {
+            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+            {
+                canMove = false;
+                StartCoroutine(MoveCoroutine());
+            }
+            //Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+            //rigidbody.velocity = Vector3.zero;   //충돌시에 떨림과 밀림 방지
+        }
+
+
         Debug.DrawRay(rigid.position, dirVec * 0.7f, new Color(0, 1, 0));
         RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, dirVec, 0.7f, LayerMask.GetMask("Object"));
 
@@ -186,7 +200,10 @@ public class PlayerController : MonoBehaviour
 
         curShotDelay = 0;
     }
-
+    void Returnhit()
+    {
+        spriteRenderer.color = new Color(1, 1, 1, 1);
+    }
     void HandAttack()    //근접 공격 함수,, 유튜브 https://youtu.be/_tSxQ9f6tX0 참고
     {
         if (curTime <= 0)
@@ -220,15 +237,14 @@ public class PlayerController : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
 
-                Vector2 Dir = (Mouseposition - PlayerPos);
-                GameObject MakeBullet = Instantiate(bullet, transform.position, Quaternion.Euler(0.0f, 0.0f, 0.0f));
+                Vector3 direction = (Mouseposition - PlayerPos);
 
-                BBullet = MakeBullet.GetComponent<Bullet>();
-                BBullet.Launch(Dir.normalized, bulletSpeed * Time.deltaTime * 100f);
-                //GameObject Bullet = Instantiate(bullet);
-                //Bullet.transform.position = bulletpos.transform.position;
-                //Bullet.gameObject.GetComponent<Rigidbody2D>().AddForce(Mouseposition * bulletSpeed*Time.deltaTime, ForceMode2D.Impulse);
+                GameObject MakeBullet = GameManager.Instance.pool.Get(2);
+                float z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
+                MakeBullet.transform.position = transform.position;
+                MakeBullet.transform.rotation = Quaternion.Euler(0, 0, z);
+                
 
                 curTime = coolTime;
 
@@ -246,6 +262,8 @@ public class PlayerController : MonoBehaviour
     public void OnHit(int dmg)
     {
         health -= dmg;
+        spriteRenderer.color = new Color(1, 0, 1, 0.4f);
+        Invoke("Returnhit", 0.6f);
     }
 
 
@@ -279,25 +297,21 @@ public class PlayerController : MonoBehaviour
     IEnumerator MoveCoroutine()
     {
 
-        vector.Set(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), transform.position.z);
+        vector.Set(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
 
-        while (currentWalkCount < walkCount)
-        {
-            if (vector.x != 0)
-            {
-                transform.Translate(vector.x * (speed) * Time.deltaTime, 0, 0);
-            }
-            else if (vector.y != 0)
-            {
-                transform.Translate(0, vector.y * (speed) * Time.deltaTime, 0);
-            }
+        Rigidbody2D rigid = GetComponent<Rigidbody2D>();
 
 
-            currentWalkCount++;
-            yield return new WaitForSeconds(0.01f);
-        }
-        currentWalkCount = 0;
+        Vector3 movement = new Vector3(vector.x, vector.y, 0);
+        movement = movement.normalized * speed * Time.deltaTime;
+
+
+        rigid.MovePosition(transform.position + movement);
+
+
+        yield return new WaitForSeconds(0.03f);
         canMove = true;
+
     }
 
     private void OnDrawGizmos()   //가상 콜라이더 그리는 함수

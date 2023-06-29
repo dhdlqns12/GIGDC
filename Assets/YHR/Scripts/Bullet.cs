@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     Rigidbody2D rigidbody2D;
+    public float speed;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,13 +17,10 @@ public class Bullet : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    public void Launch(Vector2 Direction, float Speed)
-    {
-        rigidbody2D.AddForce(Direction * Speed);
-    }
+
     void Update()
     {
-
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
 
     }
 
@@ -32,13 +30,13 @@ public class Bullet : MonoBehaviour
         {
             collision.GetComponent<MonsterController>().HitEnemy(1);
             Debug.Log("-1");
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         if (collision.tag == "Boss")
         {
             collision.GetComponent<BossController>().HitEnemy(1);
             Debug.Log("-1");
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
