@@ -9,6 +9,7 @@ TagManager:
   - Monster
   - Fruit
   - Maze
+  - Trap
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Object
   - 
   - 
   - 

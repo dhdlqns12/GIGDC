@@ -30,6 +30,13 @@ public class PlayerController : MonoBehaviour
     private int currentWalkCount;
     public bool canMove = true;
 
+    public MyGameManager myGameManager;
+    Vector3 dirVec;
+    float h;
+    float v;
+    Rigidbody2D rigid;
+    GameObject scanObject;
+
 
 
 
@@ -50,6 +57,7 @@ public class PlayerController : MonoBehaviour
     {
         cam = Camera.main;
         anim = GetComponent<Animator>();
+        rigid = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
@@ -66,6 +74,10 @@ public class PlayerController : MonoBehaviour
 
         // 좌측 방향키면 -1, 우측 방향키면 1, 상측 방향키면 1, 하측 방향키면 -1
         // 버튼을 눌렀을 때 실행
+
+
+        h = Input.GetAxisRaw("Horizontal");
+        v = Input.GetAxisRaw("Vertical");
 
         if (canMove)
         {
@@ -102,6 +114,45 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("yDir", moveDiriection.y);
         anim.SetFloat("speed", move.magnitude);
         // 여까지
+
+        bool hDown = Input.GetButtonDown("Horizontal");
+        bool vDown = Input.GetButtonDown("Vertical");
+        bool hUp = Input.GetButtonUp("Horizontal");
+        bool vUp = Input.GetButtonUp("Vertical");
+
+        if (vDown && v == 1)
+        {
+            dirVec = Vector3.up;
+        }
+        else if (vDown && v == -1)
+        {
+            dirVec = Vector3.down;
+        }
+        if (hDown && h == -1)
+        {
+            dirVec = Vector3.left;
+        }
+        if (hDown && h == 1)
+        {
+            dirVec = Vector3.right;
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && scanObject != null)
+        {
+            myGameManager.Action(scanObject);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        Debug.DrawRay(rigid.position, dirVec * 0.7f, new Color(0, 1, 0));
+        RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, dirVec, 0.7f, LayerMask.GetMask("Object"));
+
+        if (rayHit.collider != null)
+        {
+            scanObject = rayHit.collider.gameObject;
+        }
+        else
+            scanObject = null;
     }
 
     void Attack()
