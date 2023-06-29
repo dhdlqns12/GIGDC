@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     Vector2 Mouseposition;
     float bulletSpeed = 100f;
 
-    float health = 300f;
+    float health = 10f;
 
     public Transform pos; //근접공격 범위 지정 변수1
     public Vector2 boxSize;  //근접공격 범위 지정 변수2
@@ -53,7 +53,11 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-
+        //if(health <= 0)
+        //{
+        //    Die();
+        //    return;
+        //}
         Attack();
         Reload();
         Die();
@@ -198,7 +202,16 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         if (health <= 0)
-            Destroy(gameObject);
+        {
+            //Destroy(gameObject);
+            anim.SetTrigger("Die");
+            Invoke("DelayDie", 3f);
+        }
+    }
+
+    void DelayDie()
+    {
+        Destroy(gameObject);
     }
 
     public void Potion()
@@ -211,8 +224,6 @@ public class PlayerController : MonoBehaviour
 
             curPTime = 0;
         }
-
-
     }
     IEnumerator MoveCoroutine()
     {
