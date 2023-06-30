@@ -10,6 +10,9 @@ TagManager:
   - Fruit
   - Maze
   - Trap
+  - broom
+  - slingshot
+  - axe
   layers:
   - Default
   - TransparentFX
