@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
     //애니메이션 변수들
     Animator anim;
+    public bool dead = false;
     public Vector2 moveDiriection = new Vector2(1, 0);  //애니메이션에 사용할 방향
 
     private void OnEnable()
@@ -61,14 +62,10 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-
-        
-        
-        //if(health <= 0)
-        //{
-        //    Die();
-        //    return;
-        //}
+        if (health <= 0)
+        {
+            dead = true;
+        }
         CheckCam();
         Attack();
         Reload();
@@ -270,18 +267,14 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        if (health <= 0)
+        if(dead)
         {
-            //Destroy(gameObject);
             anim.SetTrigger("Die");
-            Invoke("DelayDie", 3f);
+            dead = false;
+            health = 10f;
         }
     }
 
-    void DelayDie()
-    {
-        Destroy(gameObject);
-    }
 
     public void Potion()
     {
