@@ -12,23 +12,29 @@ public class PlayerController : MonoBehaviour
     public float maxPTime = 5f;
 
     public float weapon;
+    public bool isbroom = false;
+    public bool isslingshot = false;
+    public bool isaxe = false;
     public GameObject bullet;
     public GameObject bulletpos;
+    public GameObject axeEffect;
     public Vector3 PlayerPos;
     Vector3 Mouseposition;
     float bulletSpeed = 100f;
 
     public float health = 300f;
 
-    public Transform pos; //근접공격 범위 지정 변수1
-    public Vector2 boxSize;  //근접공격 범위 지정 변수2
+    public Transform pos1; //근접공격 범위 지정 변수1
+    public Vector2 boxSize1;  //근접공격 범위 지정 변수2
+    public Transform pos2; //근접공격 범위 지정 변수1
+    public Vector2 boxSize2;  //근접공격 범위 지정 변수2
     public Transform target;
     public float speed = 40f;
     public float Maxspeed = 40f;
     private Vector3 vector;
     public bool canMove = true;
 
-    
+
     SpriteRenderer spriteRenderer;
     public Camera cam;
     public Camera mainCamera;
@@ -62,10 +68,14 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        Vector3 worldPos = cam.WorldToScreenPoint(Input.mousePosition);
+        Mouseposition = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.farClipPlane));
+
         if (health <= 0)
         {
             dead = true;
         }
+
         CheckCam();
         Attack();
         Reload();
@@ -142,7 +152,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Mouseposition = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.farClipPlane));
+
         if (canMove)
         {
             if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
@@ -189,7 +199,7 @@ public class PlayerController : MonoBehaviour
 
                 break;
             case 3:
-
+                AxeAttack();
 
                 break;
 
@@ -203,12 +213,14 @@ public class PlayerController : MonoBehaviour
     }
     void HandAttack()    //근접 공격 함수,, 유튜브 https://youtu.be/_tSxQ9f6tX0 참고
     {
+        if (!isbroom)
+            return;
         if (curTime <= 0)
         {
 
             if (Input.GetMouseButtonDown(0)) //(Input.GetKey(KeyCode.Space))
             {
-                Collider2D[] collider2ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
+                Collider2D[] collider2ds = Physics2D.OverlapBoxAll(pos1.position, boxSize1, 0);
                 foreach (Collider2D collider in collider2ds)
                 {
                     if (collider.tag == "Monster")
@@ -228,6 +240,8 @@ public class PlayerController : MonoBehaviour
 
     void SlingShotAttack()
     {
+        if (!isslingshot)
+            return;
         if (curTime <= 0)
         {
 
@@ -241,13 +255,46 @@ public class PlayerController : MonoBehaviour
 
                 MakeBullet.transform.position = transform.position;
                 MakeBullet.transform.rotation = Quaternion.Euler(0, 0, z);
-                
+
 
                 curTime = coolTime;
 
             }
         }
     }
+
+    void AxeAttack()    //근접 공격 함수,, 유튜브 https://youtu.be/_tSxQ9f6tX0 참고
+    {
+        if (!isaxe)
+            return;
+        if (curTime <= 0)
+        {
+
+            if (Input.GetMouseButtonDown(0)) //(Input.GetKey(KeyCode.Space))
+            {
+                GameObject aEffect = Instantiate(axeEffect, transform.position, transform.rotation);
+
+                Destroy(aEffect, 0.5f);
+                Collider2D[] collider2ds = Physics2D.OverlapBoxAll(pos2.position, boxSize2, 0);
+                foreach (Collider2D collider in collider2ds)
+                {
+                    if (collider.tag == "Boss")
+                    {
+                        collider.GetComponent<MonsterController>().HitEnemy(10);
+                        Debug.Log("-10");
+
+                    }
+                }
+                //공격
+                curTime = coolTime;
+
+            }
+
+        }
+
+    }
+
+
 
     void Reload()
     {
@@ -267,7 +314,7 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        if(dead)
+        if (dead)
         {
             anim.SetTrigger("Die");
             dead = false;
@@ -275,6 +322,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void DelayDie()
+    {
+        Destroy(gameObject);
+    }
 
     public void Potion()
     {
@@ -310,7 +361,8 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()   //가상 콜라이더 그리는 함수
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(pos.position, boxSize);
+        Gizmos.DrawWireCube(pos1.position, boxSize1);
+        Gizmos.DrawWireCube(pos2.position, boxSize2);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -322,6 +374,21 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "trap")
         {
             Trap();
+        }
+        if (collision.tag == "broom")
+        {
+            isbroom = true;
+            weapon = 1;
+        }
+        if (collision.tag == "slingshot")
+        {
+            isslingshot = true;
+            weapon = 2;
+        }
+        if (collision.tag == "axe")
+        {
+            isaxe = true;
+            weapon = 3;
         }
     }
 
@@ -338,13 +405,24 @@ public class PlayerController : MonoBehaviour
 
     public void WeaponChange()
     {
+        if (!isbroom)
+            return;
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             weapon = 1;
         }
+
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            if (!isslingshot)
+                return;
             weapon = 2;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (!isaxe)
+                return;
+            weapon = 3;
         }
     }
 }
