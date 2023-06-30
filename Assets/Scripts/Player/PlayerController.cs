@@ -50,9 +50,13 @@ public class PlayerController : MonoBehaviour
 
 
     //애니메이션 변수들
+    float horizontal;
+    float vertical;
+    Vector2 move;
+
     Animator anim;
     public bool dead = false;
-    public Vector2 moveDiriection = new Vector2(1, 0);  //애니메이션에 사용할 방향
+    public Vector2 moveDiriection; //애니메이션에 사용할 방향
 
     private void OnEnable()
     {
@@ -61,6 +65,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        moveDiriection = new Vector2(0, -1);
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -91,10 +96,10 @@ public class PlayerController : MonoBehaviour
         v = Input.GetAxisRaw("Vertical");
 
         //플레이어 애니메이션 함수
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
 
-        Vector2 move = new Vector2(horizontal, vertical);
+        move = new Vector2(horizontal, vertical);
 
 
         if (!Mathf.Approximately(move.x, 0) || !Mathf.Approximately(move.y, 0))
@@ -232,6 +237,9 @@ public class PlayerController : MonoBehaviour
                 //공격
                 curTime = coolTime;
 
+                anim.SetFloat("xDir", moveDiriection.x);
+                anim.SetFloat("yDir", moveDiriection.y);
+                anim.SetTrigger("attack");
             }
 
         }
@@ -258,6 +266,10 @@ public class PlayerController : MonoBehaviour
 
 
                 curTime = coolTime;
+
+                anim.SetFloat("xMouseDir", direction.x);
+                anim.SetFloat("yMouseDir", direction.y);
+                anim.SetTrigger("attack2");
 
             }
         }
@@ -287,6 +299,11 @@ public class PlayerController : MonoBehaviour
                 }
                 //공격
                 curTime = coolTime;
+
+                anim.SetFloat("xDir", moveDiriection.x);
+                anim.SetFloat("yDir", moveDiriection.y);
+                anim.SetTrigger("attack3");
+
 
             }
 
@@ -369,6 +386,10 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Key")
         {
             GameManager.Instance.key = true;
+            Destroy(collision.gameObject);
+        }
+        if (collision.tag == "FalseKey")
+        {
             Destroy(collision.gameObject);
         }
         if (collision.tag == "trap")

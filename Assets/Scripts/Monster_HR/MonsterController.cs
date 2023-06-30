@@ -333,6 +333,10 @@ public class MonsterController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Debug.Log("DIE !");
         //GameManager.instance.coin += 10;
+
+        if (enemyName == "Fox")
+            GameManager.Instance.foxKill++;
+
         Destroy(gameObject);
     }
 

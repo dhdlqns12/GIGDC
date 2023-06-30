@@ -13,6 +13,8 @@ TagManager:
   - broom
   - slingshot
   - axe
+  - TrabObject
+  - FalseKey
   layers:
   - Default
   - TransparentFX

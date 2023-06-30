@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerCamera;
 
     public int mazeCount = 0;
-
+    public int foxKill = 0;
 
     public GameObject IMG;
     public Button BT;
