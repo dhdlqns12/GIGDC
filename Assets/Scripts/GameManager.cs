@@ -25,7 +25,10 @@ public class GameManager : MonoBehaviour
     public float hp;
     public Slider hpSlider;
 
-
+    //아이템 표시 UI
+    public GameObject broom;
+    public GameObject slingshot;
+    public GameObject axe;
     private void Awake()    //싱글턴
     {
         if (Instance != null)
@@ -54,6 +57,7 @@ public class GameManager : MonoBehaviour
         }
 
         Hp_Bar();
+        ItemShow();
         //if (fruitCount == 4)    //미니게임에서 메인게임으로
         //{
         //    player.SetActive(true);
@@ -69,6 +73,23 @@ public class GameManager : MonoBehaviour
     private void Hp_Bar()
     {
         hpSlider.value = Mathf.Lerp(hpSlider.value, playerController.health / 10, Time.deltaTime * 100);
+    }
+
+    private void ItemShow()
+    {
+        if (playerController.isbroom)
+        {
+            broom.SetActive(true);
+        }
+        if (playerController.isslingshot)
+        {
+            slingshot.SetActive(true);
+        }
+        if (playerController.isaxe)
+        {
+            axe.SetActive(true);
+        }
+
     }
 
 }
