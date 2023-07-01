@@ -304,13 +304,25 @@ public class BossController : MonoBehaviour
     }
     void Die()
     {
-        StopAllCoroutines();
+        vinespawnAwarn.SetActive(false);
+        vinespawnBwarn.SetActive(false);
+        vinespawnA.SetActive(false);
+        vinespawnB.SetActive(false);
+        waterwallA.SetActive(false);
+        waterwallB.SetActive(false);
+        waterwallC.SetActive(false);
+        waterwallD.SetActive(false);
+        waterwallAwarn.SetActive(false);
+        waterwallBwarn.SetActive(false);
+        waterwallCwarn.SetActive(false);
+        waterwallDwarn.SetActive(false);
+
 
         StartCoroutine(_Die());
     }
     IEnumerator _Die()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Debug.Log("DIE !");
 
         player.transform.position = teleport.position;

@@ -16,6 +16,7 @@ TagManager:
   - TrabObject
   - FalseKey
   - Wolf
+  - Boss
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public bool isbroom = false;
     public bool isslingshot = false;
     public bool isaxe = false;
+    public bool ispotion = true;
     public GameObject bullet;
     public GameObject bulletpos;
     public GameObject axeEffect;
@@ -228,7 +229,7 @@ public class PlayerController : MonoBehaviour
                 Collider2D[] collider2ds = Physics2D.OverlapBoxAll(pos1.position, boxSize1, 0);
                 foreach (Collider2D collider in collider2ds)
                 {
-                    if (collider.tag == "Monster")
+                    if (collider.tag == "Monster" || collider.tag == "Boss")
                     {
                         collider.GetComponent<MonsterController>().HitEnemy(1);
                         Debug.Log("-1");
@@ -290,9 +291,9 @@ public class PlayerController : MonoBehaviour
                 Collider2D[] collider2ds = Physics2D.OverlapBoxAll(pos2.position, boxSize2, 0);
                 foreach (Collider2D collider in collider2ds)
                 {
-                    if (collider.tag == "Boss")
+                    if (collider.tag == "Monster" || collider.tag == "Boss")
                     {
-                        collider.GetComponent<MonsterController>().HitEnemy(10);
+                        collider.GetComponent<BossController>().HitEnemy(10);
                         Debug.Log("-10");
 
                     }
@@ -351,6 +352,7 @@ public class PlayerController : MonoBehaviour
             return;
         if (Input.GetKeyDown(KeyCode.R))
         {
+            ispotion = false;
             health = 300f;
 
             curPTime = 0;
@@ -436,7 +438,7 @@ public class PlayerController : MonoBehaviour
 
     void TrapEnd()
     {
-        speed = 5f;
+        speed = Maxspeed;
     }
 
     public void WeaponChange()

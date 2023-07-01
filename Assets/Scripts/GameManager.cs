@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public GameObject broom;
     public GameObject slingshot;
     public GameObject axe;
+    public GameObject potioncool;
 
     public bool isSave = false;
     public GameObject saveUI;
@@ -134,6 +135,14 @@ public class GameManager : MonoBehaviour
         if (playerController.isaxe)
         {
             axe.SetActive(true);
+        }
+        if (!playerController.ispotion)
+        {
+            potioncool.SetActive(true);
+        }
+        if (playerController.ispotion)
+        {
+            potioncool.SetActive(false);
         }
 
     }
