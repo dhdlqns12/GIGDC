@@ -334,8 +334,9 @@ public class PlayerController : MonoBehaviour
         if (dead)
         {
             anim.SetTrigger("Die");
-            dead = false;
+            dead = false;            
             health = 10f;
+
         }
     }
 

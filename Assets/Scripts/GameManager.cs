@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour
     public GameObject broom;
     public GameObject slingshot;
     public GameObject axe;
+
+    public bool isSave = false;
+    public GameObject saveUI;
+
     private void Awake()    //싱글턴
     {
         if (Instance != null)
@@ -37,6 +41,11 @@ public class GameManager : MonoBehaviour
             Instance = this;
 
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+    }
+
+    private void Start()
+    {
+        GameLoad();
     }
 
     public bool key = true;     // 함정발동 변수
@@ -73,6 +82,43 @@ public class GameManager : MonoBehaviour
     private void Hp_Bar()
     {
         hpSlider.value = Mathf.Lerp(hpSlider.value, playerController.health / 10, Time.deltaTime * 100);
+    }
+
+    public void GameSave()
+    {
+        PlayerPrefs.SetFloat("PlayerX", player.transform.position.x);
+        PlayerPrefs.SetFloat("PlayerY", player.transform.position.y);
+        PlayerPrefs.Save();
+        PlayerPrefs.SetFloat("PlayerCameraPosX", Camera.main.transform.position.x);
+        PlayerPrefs.SetFloat("PlayerCameraPosY", Camera.main.transform.position.y);
+    }
+
+    public void GameLoad()
+    {
+        if (!PlayerPrefs.HasKey("PlayerX"))
+            return;
+
+        float x = PlayerPrefs.GetFloat("PlayerX");
+        float y = PlayerPrefs.GetFloat("PlayerY");
+        float cameraX = PlayerPrefs.GetFloat("PlayerCameraPosX");
+        float CameraY = PlayerPrefs.GetFloat("PlayerCameraPosY");
+
+        player.transform.position = new Vector3(x, y, 0);
+        playerCamera.SetActive(true);
+        playerCamera.transform.position = new Vector3(0, 0, -10);
+    }
+
+    public void SaveYes()
+    {
+        isSave = true;
+        saveUI.SetActive(false);
+        Time.timeScale = 1;
+    }
+    public void SaveNo()
+    {
+        isSave = false;
+        saveUI.SetActive(false);
+        Time.timeScale = 1;
     }
 
     private void ItemShow()
