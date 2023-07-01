@@ -16,6 +16,12 @@ public class Scene : MonoBehaviour
         Application.Quit();
     }
 
+    public void GMin()
+    {
+        SceneManager.LoadScene("GameMain");
+    }
+
+
     public void IMGClick()
     {
         IMG.SetActive(false);
