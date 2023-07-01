@@ -15,6 +15,7 @@ TagManager:
   - axe
   - TrabObject
   - FalseKey
+  - Wolf
   layers:
   - Default
   - TransparentFX

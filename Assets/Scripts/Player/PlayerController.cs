@@ -336,13 +336,13 @@ public class PlayerController : MonoBehaviour
             anim.SetTrigger("Die");
             dead = false;            
             health = 10f;
-
+            Invoke("Delay", 5f);
         }
     }
 
-    void DelayDie()
+    void Delay()
     {
-        Destroy(gameObject);
+        anim.SetTrigger("Delay");
     }
 
     public void Potion()
@@ -411,6 +411,20 @@ public class PlayerController : MonoBehaviour
         {
             isaxe = true;
             weapon = 3;
+        }
+        if(collision.tag == "TrabObject")
+        {
+            dead = true;
+            Invoke("Die", 2f);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Wolf")
+        {
+            dead = true;
+            Die();
         }
     }
 

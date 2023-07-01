@@ -40,6 +40,10 @@ public class BossController : MonoBehaviour
 
     SpriteRenderer renderer;
 
+    //엔딩이동변수
+    public GameObject player;
+    public Transform teleport;
+
     void Awake()
     {
         isThink = true;
@@ -308,6 +312,10 @@ public class BossController : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         Debug.Log("DIE !");
+
+        player.transform.position = teleport.position;
+        GameManager.Instance.key = false;
+
         Destroy(gameObject);
     }
 
