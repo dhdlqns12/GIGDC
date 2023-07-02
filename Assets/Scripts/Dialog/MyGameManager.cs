@@ -11,6 +11,7 @@ public class MyGameManager : MonoBehaviour
     public GameObject scanObject;
     public bool isAction;
     public int talkIndex;
+    public Image portraitImg;
 
     public void Action(GameObject scanObj)
     {
@@ -39,6 +40,8 @@ public class MyGameManager : MonoBehaviour
         else
         {
             talkText.text = talkData;
+            portraitImg.sprite = talkManager.GetPortrait(id);
+            portraitImg.color = new Color(1, 1, 1, 1);
         }
 
         isAction = true;

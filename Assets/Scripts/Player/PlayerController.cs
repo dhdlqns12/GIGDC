@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     public bool canMove = true;
 
 
-    SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
     public Camera cam;
     public Camera mainCamera;
     public Camera playerCamera;
@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     float v;
     Rigidbody2D rigid;
     GameObject scanObject;
+    public GameObject gameOverUI;
 
 
     //애니메이션 변수들
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour
     float vertical;
     Vector2 move;
 
-    Animator anim;
+    public Animator anim;
     public bool dead = false;
     public Vector2 moveDiriection; //애니메이션에 사용할 방향
 
@@ -335,16 +336,18 @@ public class PlayerController : MonoBehaviour
         if (dead)
         {
             anim.SetTrigger("Die");
-            dead = false;            
-            health = 10f;
-            //
-            Invoke("Delay", 5f); //이 부분
+            dead = false;
+            Invoke("Delay", 2f);
         }
     }
 
     void Delay()
     {
-        anim.SetTrigger("Delay");
+        if (health <= 0)
+        {
+            gameOverUI.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
 
     public void Potion()

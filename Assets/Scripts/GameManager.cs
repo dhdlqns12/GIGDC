@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class GameManager : MonoBehaviour
 
     public bool isSave = false;
     public GameObject saveUI;
+    public PlayerController plcr;
+    public GameObject gameOverUI;
 
     private void Awake()    //╫л╠шео
     {
@@ -147,4 +150,27 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void GameOver_Load()
+    {
+        if (!PlayerPrefs.HasKey("PlayerX"))
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
+        else if (PlayerPrefs.HasKey("PlayerX"))
+        {
+            GameLoad();
+        }
+        plcr.health = 10f;
+        plcr.anim.SetTrigger("Delay");
+        Time.timeScale = 1;
+        plcr.spriteRenderer.color = new Color(1, 1, 1, 1);
+        gameOverUI.SetActive(false);
+
+    }
+
+    public void GameOver_Menu()
+    {
+        SceneManager.LoadScene("GameMain");
+        Time.timeScale = 1;
+    }
 }
