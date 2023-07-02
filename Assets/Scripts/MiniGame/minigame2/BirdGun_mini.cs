@@ -16,6 +16,11 @@ public class BirdGun_mini : MonoBehaviour
 
     public GameObject wolf1;
 
+    public GameObject apple1;
+    public GameObject apple2;
+    public GameObject apple3;
+    public GameObject apple4;
+
     void Update()
     {
         float h = Input.GetAxis("Horizontal");
@@ -38,8 +43,13 @@ public class BirdGun_mini : MonoBehaviour
             miniG.SetActive(false);
             mainCamera.SetActive(false);
             playerCamera.SetActive(true);
+            apple1.SetActive(true);
+            apple2.SetActive(true);
+            apple3.SetActive(true);
+            apple4.SetActive(true);
             dialogCollider10.SetActive(true);
             wolf1.SetActive(true);
+            GameManager.Instance.fruitCount = 0;
             //Camera.main.transform.position = new Vector3(cameraPos.position.x, cameraPos.position.y, -10);
 
         }
