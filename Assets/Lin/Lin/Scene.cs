@@ -8,6 +8,7 @@ public class Scene : MonoBehaviour
     public GameObject IMG;
     public void Change()
     {
+        PlayerPrefs.DeleteAll();
         SceneManager.LoadScene("LS");
     }
 
