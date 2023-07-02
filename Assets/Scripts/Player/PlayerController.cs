@@ -348,6 +348,7 @@ public class PlayerController : MonoBehaviour
             gameOverUI.SetActive(true);
             Time.timeScale = 0;
         }
+        
     }
 
     public void Potion()
