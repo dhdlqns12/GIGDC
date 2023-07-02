@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Save1 : MonoBehaviour
 {
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.tag == "Player" && GameManager.Instance.key == true&&GameManager.Instance.isSave==true)

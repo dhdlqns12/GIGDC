@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigid;
     GameObject scanObject;
     public GameObject gameOverUI;
+    public bool wolfDead=false;
 
 
     //애니메이션 변수들
@@ -77,6 +78,11 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 worldPos = cam.WorldToScreenPoint(Input.mousePosition);
         Mouseposition = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.farClipPlane));
+
+        if(myGameManager.isAction==true)
+        {
+            anim.SetTrigger("Idle");
+        }
 
         if (health <= 0)
         {
@@ -109,10 +115,12 @@ public class PlayerController : MonoBehaviour
             moveDiriection.Set(move.x, move.y);
             moveDiriection.Normalize();
         }
-
-        anim.SetFloat("xDir", moveDiriection.x);
-        anim.SetFloat("yDir", moveDiriection.y);
-        anim.SetFloat("speed", move.magnitude);
+        if (myGameManager.isAction == false)
+        {
+            anim.SetFloat("xDir", moveDiriection.x);
+            anim.SetFloat("yDir", moveDiriection.y);
+            anim.SetFloat("speed", move.magnitude);
+        }
         // 여까지
 
         bool hDown = Input.GetButtonDown("Horizontal");
@@ -122,19 +130,23 @@ public class PlayerController : MonoBehaviour
 
         if (vDown && v == 1)
         {
+            if(myGameManager.isAction==false)
             dirVec = Vector3.up;
         }
         else if (vDown && v == -1)
         {
-            dirVec = Vector3.down;
+            if (myGameManager.isAction == false)
+                dirVec = Vector3.down;
         }
         if (hDown && h == -1)
         {
-            dirVec = Vector3.left;
+            if (myGameManager.isAction == false)
+                dirVec = Vector3.left;
         }
         if (hDown && h == 1)
         {
-            dirVec = Vector3.right;
+            if (myGameManager.isAction == false)
+                dirVec = Vector3.right;
         }
         if (Input.GetKeyDown(KeyCode.Space) && scanObject != null)
         {
@@ -238,10 +250,12 @@ public class PlayerController : MonoBehaviour
                 }
                 //공격
                 curTime = coolTime;
-
-                anim.SetFloat("xDir", moveDiriection.x);
-                anim.SetFloat("yDir", moveDiriection.y);
-                anim.SetTrigger("attack");
+                if (myGameManager.isAction == false)
+                {
+                    anim.SetFloat("xDir", moveDiriection.x);
+                    anim.SetFloat("yDir", moveDiriection.y);
+                    anim.SetTrigger("attack");
+                }
             }
 
         }
@@ -268,10 +282,12 @@ public class PlayerController : MonoBehaviour
 
 
                 curTime = coolTime;
-
-                anim.SetFloat("xMouseDir", direction.x);
-                anim.SetFloat("yMouseDir", direction.y);
-                anim.SetTrigger("attack2");
+                if (myGameManager.isAction == false)
+                {
+                    anim.SetFloat("xMouseDir", direction.x);
+                    anim.SetFloat("yMouseDir", direction.y);
+                    anim.SetTrigger("attack2");
+                }
 
             }
         }
@@ -301,15 +317,17 @@ public class PlayerController : MonoBehaviour
                 }
                 //공격
                 curTime = coolTime;
+                if (myGameManager.isAction == false)
+                {
+                    anim.SetFloat("xDir", moveDiriection.x);
+                    anim.SetFloat("yDir", moveDiriection.y);
+                    anim.SetTrigger("attack3");
+                }
 
-                anim.SetFloat("xDir", moveDiriection.x);
-                anim.SetFloat("yDir", moveDiriection.y);
-                anim.SetTrigger("attack3");
 
+                }
 
             }
-
-        }
 
     }
 
@@ -343,8 +361,9 @@ public class PlayerController : MonoBehaviour
 
     void Delay()
     {
-        if (health <= 0)
+        if (health <= 0||wolfDead==true)
         {
+            wolfDead = false;
             gameOverUI.SetActive(true);
             Time.timeScale = 0;
         }
@@ -357,10 +376,13 @@ public class PlayerController : MonoBehaviour
             return;
         if (Input.GetKeyDown(KeyCode.R))
         {
-            ispotion = false;
-            health = 300f;
+            if (myGameManager.isAction == false)
+            {
+                ispotion = false;
+                health = 300f;
 
-            curPTime = 0;
+                curPTime = 0;
+            }
         }
     }
     IEnumerator MoveCoroutine()
@@ -374,8 +396,8 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(vector.x, vector.y, 0);
         movement = movement.normalized * speed * Time.deltaTime;
 
-
-        rigid.MovePosition(transform.position + movement);
+        if(myGameManager.isAction==false)
+            rigid.MovePosition(transform.position + movement);
 
 
         yield return new WaitForSeconds(0.03f);
@@ -404,21 +426,6 @@ public class PlayerController : MonoBehaviour
         {
             Trap();
         }
-        if (collision.tag == "broom")
-        {
-            isbroom = true;
-            weapon = 1;
-        }
-        if (collision.tag == "slingshot")
-        {
-            isslingshot = true;
-            weapon = 2;
-        }
-        if (collision.tag == "axe")
-        {
-            isaxe = true;
-            weapon = 3;
-        }
         if(collision.tag == "TrabObject")
         {
             dead = true;
@@ -431,7 +438,27 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.tag == "Wolf")
         {
             dead = true;
+            wolfDead = true;
             Die();
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(myGameManager.isAction == true&&collision.tag=="broom")
+        {
+            isbroom = true;
+            weapon = 1;
+        }
+        if(myGameManager.isAction==true&&collision.tag=="slingshot")
+        {
+            isslingshot = true;
+            weapon = 2;
+        }
+        if(myGameManager.isAction==true&&collision.tag=="axe")
+        {
+            isaxe = true;
+            weapon = 3;
         }
     }
 
@@ -452,20 +479,23 @@ public class PlayerController : MonoBehaviour
             return;
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            weapon = 1;
+            if(myGameManager.isAction==false)
+                weapon = 1;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             if (!isslingshot)
                 return;
-            weapon = 2;
+            if (myGameManager.isAction == false)
+                weapon = 2;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             if (!isaxe)
                 return;
-            weapon = 3;
+            if (myGameManager.isAction == false)
+                weapon = 3;
         }
     }
 }

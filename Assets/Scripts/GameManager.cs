@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
         float y = PlayerPrefs.GetFloat("PlayerY");
         float cameraX = PlayerPrefs.GetFloat("PlayerCameraPosX");
         float CameraY = PlayerPrefs.GetFloat("PlayerCameraPosY");
+        
 
         player.transform.position = new Vector3(x, y, 0);
         playerCamera.SetActive(true);
