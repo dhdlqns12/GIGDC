@@ -574,6 +574,11 @@ public class PlayerController : MonoBehaviour
                 isSet16 = true;
             }
         }
+        if (GameManager.Instance.foxKill == 0)
+        {
+            isActive16 = false;
+            dialogCollider16.SetActive(false);
+        }
     }
 
     public void Active_DialogCollider21()

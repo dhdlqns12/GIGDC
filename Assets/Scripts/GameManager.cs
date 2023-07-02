@@ -72,6 +72,8 @@ public class GameManager : MonoBehaviour
     public GameObject fox6;
     public GameObject fox7;
     public GameObject fox8;
+    public mini5 _mini5;
+    public GameObject dialogCollider15;
 
     private void Awake()    //╫л╠шео
     {
@@ -241,12 +243,13 @@ public class GameManager : MonoBehaviour
         mazeCount = 0;
         neighborAEvent.SetActive(true);
         foxKill = 0;
+        _mini5.isSet = false;
+        foxKey.SetActive(false);
         foxKey.transform.GetChild(0).gameObject.SetActive(true);
         foxKey.transform.GetChild(1).gameObject.SetActive(true);
         foxKey.transform.GetChild(2).gameObject.SetActive(true);
         foxKey.transform.GetChild(3).gameObject.SetActive(false);
         foxKey.transform.GetChild(4).gameObject.SetActive(false);
-        foxSpawn.SetActive(false);
         fox1.transform.position = foxSpawnVector1;
         fox2.transform.position = foxSpawnVector2;
         fox3.transform.position = foxSpawnVector3;
@@ -256,6 +259,16 @@ public class GameManager : MonoBehaviour
         fox7.transform.position = foxSpawnVector7;
         fox8.transform.position = foxSpawnVector8;
         dialogCollider14.SetActive(true);
+        foxSpawn.SetActive(false);
+        foxSpawn.transform.GetChild(0).gameObject.SetActive(true);
+        foxSpawn.transform.GetChild(1).gameObject.SetActive(true);
+        foxSpawn.transform.GetChild(2).gameObject.SetActive(true);
+        foxSpawn.transform.GetChild(3).gameObject.SetActive(true);
+        foxSpawn.transform.GetChild(4).gameObject.SetActive(true);
+        foxSpawn.transform.GetChild(5).gameObject.SetActive(true);
+        foxSpawn.transform.GetChild(6).gameObject.SetActive(true);
+        foxSpawn.transform.GetChild(7).gameObject.SetActive(true);
+        foxSpawn.transform.GetChild(8).gameObject.SetActive(true);
     }
 
     public void GameOver_Menu()

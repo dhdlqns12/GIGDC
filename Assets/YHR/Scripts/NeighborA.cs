@@ -31,7 +31,7 @@ public class NeighborA : MonoBehaviour
             redscreen.SetActive(true);
 
             Invoke("screenoff", 3f);
-            Invoke("objoff", 5f);
+            Invoke("objoff", 3f);
         }
     }
 

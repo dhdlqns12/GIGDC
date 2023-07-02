@@ -22,6 +22,7 @@ public class mini5 : MonoBehaviour
         if(dialogCollider15.activeSelf==false&&isSet==true)
         {
             keys.SetActive(true);
+            isOpen = false;
         }
     }
 

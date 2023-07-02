@@ -24,7 +24,7 @@ public class wolfOnOff : MonoBehaviour
             }
             else if(GameManager.Instance.mazeCount == 2)
             {
-                Destroy(wolf2, 2f);
+                wolf2.SetActive(false);
             }
 
         }
