@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         plcr.spriteRenderer.color = new Color(1, 1, 1, 1);
         gameOverUI.SetActive(false);
-
+        key = true;
     }
 
     public void GameOver_Menu()
