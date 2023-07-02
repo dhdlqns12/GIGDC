@@ -36,6 +36,7 @@ public class MyGameManager : MonoBehaviour
         if(isNpc)
         {
             talkText.text = talkData;
+            portraitImg.color = new Color(1, 1, 1, 0);
         }
         else
         {

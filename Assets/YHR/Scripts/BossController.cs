@@ -37,6 +37,9 @@ public class BossController : MonoBehaviour
     public int curPatternCount;
     public int[] maxPatternCount;
 
+    public GameObject dialogCollider19;
+
+
 
     SpriteRenderer renderer;
 
@@ -46,7 +49,8 @@ public class BossController : MonoBehaviour
 
     void Awake()
     {
-        isThink = true;
+        //if (dialogCollider19.activeSelf == false)
+        //    isThink = true;
 
         renderer = GetComponent<SpriteRenderer>();
 
@@ -55,21 +59,26 @@ public class BossController : MonoBehaviour
 
     private void Update()
     {
-
+        if (dialogCollider19.activeSelf == false)
+            isThink = true;
     }
 
     void Returnhit()
     {
-        renderer.color = new Color(1, 1, 1, 1);
+        if (dialogCollider19.activeSelf == false)
+            renderer.color = new Color(1, 1, 1, 1);
     }
 
     public void HitEnemy(int dam)
     {
-        health -= dam;
-        Instantiate(effect, transform.position, transform.rotation);
-        if (health <= 0)
+        if (dialogCollider19.activeSelf == false)
         {
-            Die();
+            health -= dam;
+            Instantiate(effect, transform.position, transform.rotation);
+            if (health <= 0)
+            {
+                Die();
+            }
         }
 
         renderer.color = new Color(1, 0, 0, 0.5f);
@@ -83,29 +92,30 @@ public class BossController : MonoBehaviour
 
     void Think()
     {
-        if (isThink)
-        {
-            patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
-            curPatternCount = 0;
-
-            switch (patternIndex)
+            if (isThink)
             {
-                case 0:
-                    vinespawnAwarn.SetActive(true);
-                    LongAttack_A();
-                    break;
-                case 1:
-                    LongAttack_B();
-                    break;
-                case 2:
-                    vinespawnBwarn.SetActive(true);
-                    CloseAttack_A();
-                    break;
-                case 3:
-                    CloseAttack_B();
-                    break;
+                patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
+                curPatternCount = 0;
+
+                switch (patternIndex)
+                {
+                    case 0:
+                        vinespawnAwarn.SetActive(true);
+                        LongAttack_A();
+                        break;
+                    case 1:
+                        LongAttack_B();
+                        break;
+                    case 2:
+                        vinespawnBwarn.SetActive(true);
+                        CloseAttack_A();
+                        break;
+                    case 3:
+                        CloseAttack_B();
+                        break;
+                }
             }
-        }
+        
     }
     void LongAttack_A()
     {

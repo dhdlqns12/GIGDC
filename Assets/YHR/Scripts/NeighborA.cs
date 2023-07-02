@@ -8,6 +8,8 @@ public class NeighborA : MonoBehaviour
     CameraShake camera;
     public GameObject maincam;
     public GameObject redscreen;
+    public GameObject dialogCollider12;
+    public bool isEffect=false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +23,13 @@ public class NeighborA : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
+            isEffect = true;
             collision.GetComponent<PlayerController>().Trap();
-            ad.Play();
+            ad.Play();            
             camera.onhit = true;
             camera.VibrateForTime(3f);
             redscreen.SetActive(true);
+
             Invoke("screenoff", 3f);
         }
         Invoke("objoff", 5f);
@@ -34,6 +38,8 @@ public class NeighborA : MonoBehaviour
     void screenoff()
     {
         redscreen.SetActive(false);
+        dialogCollider12.SetActive(true);
+        isEffect = false;
     }
 
     void objoff()

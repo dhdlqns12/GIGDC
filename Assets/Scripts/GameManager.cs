@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public GameObject saveUI;
     public PlayerController plcr;
     public GameObject gameOverUI;
+    public bool save4 = false;
 
     private void Awake()    //╫л╠шео
     {
@@ -95,6 +96,9 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
         PlayerPrefs.SetFloat("PlayerCameraPosX", Camera.main.transform.position.x);
         PlayerPrefs.SetFloat("PlayerCameraPosY", Camera.main.transform.position.y);
+        //PlayerPrefs.SetInt("isBroom", System.Convert.ToInt32(playerController.isbroom));
+        //PlayerPrefs.SetInt("isSlingShot", System.Convert.ToInt32(playerController.isslingshot));
+        //PlayerPrefs.SetInt("isAxe", System.Convert.ToInt32(playerController.isaxe));
     }
 
     public void GameLoad()
@@ -106,11 +110,18 @@ public class GameManager : MonoBehaviour
         float y = PlayerPrefs.GetFloat("PlayerY");
         float cameraX = PlayerPrefs.GetFloat("PlayerCameraPosX");
         float CameraY = PlayerPrefs.GetFloat("PlayerCameraPosY");
-        
+        bool isBroom = System.Convert.ToBoolean(PlayerPrefs.GetInt("isBroom"));
+        bool isSlingShot = System.Convert.ToBoolean(PlayerPrefs.GetInt("isSlingShot"));
+        bool isAxe = System.Convert.ToBoolean(PlayerPrefs.GetInt("isAxe"));
+
+
 
         player.transform.position = new Vector3(x, y, 0);
         playerCamera.SetActive(true);
         playerCamera.transform.position = new Vector3(0, 0, -10);
+        playerController.isbroom = isBroom;
+        playerController.isslingshot = isSlingShot;
+        playerController.isaxe = isAxe;
     }
 
     public void SaveYes()

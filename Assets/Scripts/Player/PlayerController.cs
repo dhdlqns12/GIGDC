@@ -50,6 +50,23 @@ public class PlayerController : MonoBehaviour
     GameObject scanObject;
     public GameObject gameOverUI;
     public bool wolfDead=false;
+    public GameObject mouseSpawn;
+    public GameObject batSpawn;
+    public NeighborA neighborA;
+    public GameObject foxSpawn;
+    public GameObject dialogCollider14;
+    public GameObject dialogCollider16;
+    public GameObject dialogCollider20;
+    public GameObject dialogCollider21;
+    public GameObject dialogCollider25;
+    public GameObject dialogCollider26;
+    public GameObject dialogCollider27;
+    public GameObject dialogCollider28;
+    public bool isActive16 = false;
+    public bool isSet16 = false;
+    public bool isActive21 = false;
+    public bool isActive26 = false;
+    public bool isActive27 = false;
 
 
     //애니메이션 변수들
@@ -79,7 +96,8 @@ public class PlayerController : MonoBehaviour
         Vector3 worldPos = cam.WorldToScreenPoint(Input.mousePosition);
         Mouseposition = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.farClipPlane));
 
-        if(myGameManager.isAction==true)
+
+        if(myGameManager.isAction==true&&neighborA.isEffect==true)
         {
             anim.SetTrigger("Idle");
         }
@@ -95,6 +113,13 @@ public class PlayerController : MonoBehaviour
         Die();
         Potion();
         WeaponChange();
+        MouseSpawn();
+        BatSpawn();
+        FoxSpawn();
+        Active_DialogCollider16();
+        Active_DialogCollider21();
+        Active_DialogCollider27();
+        Active_DialogCollider28();
 
         // 좌측 방향키면 -1, 우측 방향키면 1, 상측 방향키면 1, 하측 방향키면 -1
         // 버튼을 눌렀을 때 실행
@@ -115,7 +140,7 @@ public class PlayerController : MonoBehaviour
             moveDiriection.Set(move.x, move.y);
             moveDiriection.Normalize();
         }
-        if (myGameManager.isAction == false)
+        if (myGameManager.isAction == false&&neighborA.isEffect==false)
         {
             anim.SetFloat("xDir", moveDiriection.x);
             anim.SetFloat("yDir", moveDiriection.y);
@@ -250,7 +275,7 @@ public class PlayerController : MonoBehaviour
                 }
                 //공격
                 curTime = coolTime;
-                if (myGameManager.isAction == false)
+                if (myGameManager.isAction == false && neighborA.isEffect == false)
                 {
                     anim.SetFloat("xDir", moveDiriection.x);
                     anim.SetFloat("yDir", moveDiriection.y);
@@ -282,7 +307,7 @@ public class PlayerController : MonoBehaviour
 
 
                 curTime = coolTime;
-                if (myGameManager.isAction == false)
+                if (myGameManager.isAction == false && neighborA.isEffect == false)
                 {
                     anim.SetFloat("xMouseDir", direction.x);
                     anim.SetFloat("yMouseDir", direction.y);
@@ -317,7 +342,7 @@ public class PlayerController : MonoBehaviour
                 }
                 //공격
                 curTime = coolTime;
-                if (myGameManager.isAction == false)
+                if (myGameManager.isAction == false && neighborA.isEffect == false)
                 {
                     anim.SetFloat("xDir", moveDiriection.x);
                     anim.SetFloat("yDir", moveDiriection.y);
@@ -376,7 +401,7 @@ public class PlayerController : MonoBehaviour
             return;
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (myGameManager.isAction == false)
+            if (myGameManager.isAction == false && neighborA.isEffect == false)
             {
                 ispotion = false;
                 health = 300f;
@@ -396,7 +421,7 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(vector.x, vector.y, 0);
         movement = movement.normalized * speed * Time.deltaTime;
 
-        if(myGameManager.isAction==false)
+        if(myGameManager.isAction==false && neighborA.isEffect == false)
             rigid.MovePosition(transform.position + movement);
 
 
@@ -432,6 +457,25 @@ public class PlayerController : MonoBehaviour
             Invoke("Die", 2f);
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (myGameManager.isAction == true && collision.tag == "broom")
+        {
+            isbroom = true;
+            weapon = 1;
+        }
+
+        if (myGameManager.isAction == true && collision.tag == "slingshot")
+        {
+            isslingshot = true;
+            weapon = 2;
+        }
+        if (myGameManager.isAction == true && collision.tag == "axe")
+        {
+            isaxe = true;
+            weapon = 3;
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -440,25 +484,6 @@ public class PlayerController : MonoBehaviour
             dead = true;
             wolfDead = true;
             Die();
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(myGameManager.isAction == true&&collision.tag=="broom")
-        {
-            isbroom = true;
-            weapon = 1;
-        }
-        if(myGameManager.isAction==true&&collision.tag=="slingshot")
-        {
-            isslingshot = true;
-            weapon = 2;
-        }
-        if(myGameManager.isAction==true&&collision.tag=="axe")
-        {
-            isaxe = true;
-            weapon = 3;
         }
     }
 
@@ -496,6 +521,67 @@ public class PlayerController : MonoBehaviour
                 return;
             if (myGameManager.isAction == false)
                 weapon = 3;
+        }
+    }
+
+    public void MouseSpawn()
+    {
+        if(isbroom==true&&myGameManager.isAction==false)
+        {
+            mouseSpawn.SetActive(true);
+        }
+    }
+
+    public void BatSpawn()
+    {
+        if(isslingshot==true&&myGameManager.isAction==false)
+        {
+            batSpawn.SetActive(true);
+        }
+    }
+
+    public void FoxSpawn()
+    {
+        if(dialogCollider14.activeSelf==false)
+        {
+            foxSpawn.SetActive(true);
+        }
+    }
+
+    public void Active_DialogCollider16()
+    {
+        if (GameManager.Instance.foxKill == 8)
+        {
+            isActive16 = true;
+            if (isActive16 == true && isSet16 == false)
+            {
+                dialogCollider16.SetActive(true);
+                isSet16 = true;
+            }
+        }
+    }
+
+    public void Active_DialogCollider21()
+    {
+        if(dialogCollider20.activeSelf==false&&isActive21==false)
+        {
+            dialogCollider21.SetActive(true);
+            isActive21 = true;
+        }
+    }
+    public void Active_DialogCollider27()
+    {
+        if(dialogCollider26.activeSelf==false&&isActive26==false)
+        {
+            dialogCollider27.SetActive(true);
+            isActive27 = true;
+        }
+    }
+    public void Active_DialogCollider28()
+    {
+        if(isActive27==true&&dialogCollider27.activeSelf==false)
+        {
+            dialogCollider28.SetActive(true);
         }
     }
 }
