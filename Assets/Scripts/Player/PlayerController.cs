@@ -337,7 +337,8 @@ public class PlayerController : MonoBehaviour
             anim.SetTrigger("Die");
             dead = false;            
             health = 10f;
-            Invoke("Delay", 5f);
+            //
+            Invoke("Delay", 5f); //¿Ã ∫Œ∫–
         }
     }
 
