@@ -469,7 +469,7 @@ public class PlayerController : MonoBehaviour
         {
             dead = true;
             trapDead = true;
-            Invoke("Die", 2f);
+            Invoke("Die", 0.5f);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
