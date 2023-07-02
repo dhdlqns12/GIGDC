@@ -37,6 +37,41 @@ public class GameManager : MonoBehaviour
     public PlayerController plcr;
     public GameObject gameOverUI;
     public bool save4 = false;
+    public GameObject wolf1;
+    public MonsterController_Wolf wolfController;
+    public GameObject dialogCollider7;
+    public GameObject batSpawn;
+    public GameObject dialogCollider10;
+    public GameObject dialogCollider14;
+    public GameObject miniGame2Go;
+    public GameObject wolf2;
+    public GameObject neighborAEvent;
+    public GameObject foxKey;
+    public GameObject foxSpawn;
+    public Transform foxSpawnPosition1;
+    public Vector3 foxSpawnVector1;
+    public Transform foxSpawnPosition2;
+    public Vector3 foxSpawnVector2;
+    public Transform foxSpawnPosition3;
+    public Vector3 foxSpawnVector3;
+    public Transform foxSpawnPosition4;
+    public Vector3 foxSpawnVector4;
+    public Transform foxSpawnPosition5;
+    public Vector3 foxSpawnVector5;
+    public Transform foxSpawnPosition6;
+    public Vector3 foxSpawnVector6;
+    public Transform foxSpawnPosition7;
+    public Vector3 foxSpawnVector7;
+    public Transform foxSpawnPosition8;
+    public Vector3 foxSpawnVector8;
+    public GameObject fox1;
+    public GameObject fox2;
+    public GameObject fox3;
+    public GameObject fox4;
+    public GameObject fox5;
+    public GameObject fox6;
+    public GameObject fox7;
+    public GameObject fox8;
 
     private void Awake()    //싱글턴
     {
@@ -51,6 +86,22 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         GameLoad();
+        foxSpawnPosition1.position = foxSpawn.transform.GetChild(0).gameObject.transform.position;
+        foxSpawnVector1 = new Vector3(foxSpawnPosition1.position.x, foxSpawnPosition1.position.y, 0);
+        foxSpawnPosition2.position = foxSpawn.transform.GetChild(1).gameObject.transform.position;
+        foxSpawnVector2 = new Vector3(foxSpawnPosition2.position.x, foxSpawnPosition2.position.y, 0);
+        foxSpawnPosition3.position = foxSpawn.transform.GetChild(2).gameObject.transform.position;
+        foxSpawnVector3 = new Vector3(foxSpawnPosition3.position.x, foxSpawnPosition3.position.y, 0);
+        foxSpawnPosition4.position = foxSpawn.transform.GetChild(3).gameObject.transform.position;
+        foxSpawnVector4 = new Vector3(foxSpawnPosition4.position.x, foxSpawnPosition4.position.y, 0);
+        foxSpawnPosition5.position = foxSpawn.transform.GetChild(4).gameObject.transform.position;
+        foxSpawnVector5 = new Vector3(foxSpawnPosition5.position.x, foxSpawnPosition5.position.y, 0);
+        foxSpawnPosition6.position = foxSpawn.transform.GetChild(5).gameObject.transform.position;
+        foxSpawnVector6 = new Vector3(foxSpawnPosition6.position.x, foxSpawnPosition6.position.y, 0);
+        foxSpawnPosition7.position = foxSpawn.transform.GetChild(6).gameObject.transform.position;
+        foxSpawnVector7 = new Vector3(foxSpawnPosition7.position.x, foxSpawnPosition7.position.y, 0);
+        foxSpawnPosition8.position = foxSpawn.transform.GetChild(7).gameObject.transform.position;
+        foxSpawnVector8 = new Vector3(foxSpawnPosition8.position.x, foxSpawnPosition8.position.y, 0);
     }
 
     public bool key = true;     // 함정발동 변수
@@ -122,6 +173,8 @@ public class GameManager : MonoBehaviour
         playerController.isbroom = isBroom;
         playerController.isslingshot = isSlingShot;
         playerController.isaxe = isAxe;
+        dialogCollider7.SetActive(true);
+        batSpawn.SetActive(false);
     }
 
     public void SaveYes()
@@ -178,6 +231,31 @@ public class GameManager : MonoBehaviour
         plcr.spriteRenderer.color = new Color(1, 1, 1, 1);
         gameOverUI.SetActive(false);
         key = true;
+        fruitCount = 0;
+        wolf1.SetActive(false);
+        wolf2.SetActive(false);
+        wolf1.transform.position = wolfController.originVector1;
+        wolf2.transform.position = wolfController.originVector2;
+        dialogCollider10.SetActive(false);
+        miniGame2Go.SetActive(true);
+        mazeCount = 0;
+        neighborAEvent.SetActive(true);
+        foxKill = 0;
+        foxKey.transform.GetChild(0).gameObject.SetActive(true);
+        foxKey.transform.GetChild(1).gameObject.SetActive(true);
+        foxKey.transform.GetChild(2).gameObject.SetActive(true);
+        foxKey.transform.GetChild(3).gameObject.SetActive(false);
+        foxKey.transform.GetChild(4).gameObject.SetActive(false);
+        foxSpawn.SetActive(false);
+        fox1.transform.position = foxSpawnVector1;
+        fox2.transform.position = foxSpawnVector2;
+        fox3.transform.position = foxSpawnVector3;
+        fox4.transform.position = foxSpawnVector4;
+        fox5.transform.position = foxSpawnVector5;
+        fox6.transform.position = foxSpawnVector6;
+        fox7.transform.position = foxSpawnVector7;
+        fox8.transform.position = foxSpawnVector8;
+        dialogCollider14.SetActive(true);
     }
 
     public void GameOver_Menu()

@@ -36,7 +36,7 @@ public class mini5 : MonoBehaviour
     {
         if (collision.tag == "Player" && GameManager.Instance.key == true)
         {
-            Destroy(gameObject);
+            //gameObject.SetActive(false);
         }
     }
 

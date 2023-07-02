@@ -11,7 +11,7 @@ public class keyTrap : MonoBehaviour
         if(collision.tag == "Player")
         {
             explor.SetActive(true);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

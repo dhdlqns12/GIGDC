@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     GameObject scanObject;
     public GameObject gameOverUI;
     public bool wolfDead=false;
+    public bool trapDead = false;
     public GameObject mouseSpawn;
     public GameObject batSpawn;
     public NeighborA neighborA;
@@ -402,7 +403,7 @@ public class PlayerController : MonoBehaviour
 
     void Delay()
     {
-        if (health <= 0||wolfDead==true)
+        if (health <= 0||wolfDead==true||trapDead==true)
         {
             wolfDead = false;
             gameOverUI.SetActive(true);
@@ -417,13 +418,10 @@ public class PlayerController : MonoBehaviour
             return;
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (myGameManager.isAction == false && neighborA.isEffect == false)
-            {
-                ispotion = false;
-                health = 300f;
+            ispotion = false;
+            health = 10f;
 
-                curPTime = 0;
-            }
+            curPTime = 0;
         }
     }
     IEnumerator MoveCoroutine()
@@ -457,7 +455,7 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Key")
         {
             GameManager.Instance.key = true;
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
         if (collision.tag == "FalseKey")
         {
@@ -470,6 +468,7 @@ public class PlayerController : MonoBehaviour
         if(collision.tag == "TrabObject")
         {
             dead = true;
+            trapDead = true;
             Invoke("Die", 2f);
         }
     }

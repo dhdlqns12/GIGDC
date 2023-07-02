@@ -337,7 +337,7 @@ public class MonsterController : MonoBehaviour
         if (enemyName == "Fox")
             GameManager.Instance.foxKill++;
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
 

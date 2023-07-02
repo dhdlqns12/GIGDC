@@ -19,8 +19,9 @@ public class MiniGame2Go : MonoBehaviour
 
             collision.gameObject.SetActive(false);
             Camera.main.transform.position = new Vector3(cameraPos.position.x, cameraPos.position.y, -10);
-            
-            Destroy(gameObject,3f);
+
+            gameObject.SetActive(false);
+            //Destroy(gameObject,3f);
         }
     }
 

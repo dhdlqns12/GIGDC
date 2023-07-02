@@ -9,7 +9,7 @@ public class NeighborA : MonoBehaviour
     public GameObject maincam;
     public GameObject redscreen;
     public GameObject dialogCollider12;
-    public bool isEffect=false;
+    public bool isEffect = false;
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +31,8 @@ public class NeighborA : MonoBehaviour
             redscreen.SetActive(true);
 
             Invoke("screenoff", 3f);
+            Invoke("objoff", 5f);
         }
-        Invoke("objoff", 5f);
     }
 
     void screenoff()
