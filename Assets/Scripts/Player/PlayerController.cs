@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         canMove = true;
+        StartCoroutine(deadCheck());
     }
 
     private void Start()
@@ -104,13 +105,13 @@ public class PlayerController : MonoBehaviour
 
         if (health <= 0)
         {
-            dead = true;
+            return;
         }
 
         CheckCam();
         Attack();
         Reload();
-        Die();
+        //Die();
         Potion();
         WeaponChange();
         MouseSpawn();
@@ -372,7 +373,22 @@ public class PlayerController : MonoBehaviour
         Invoke("Returnhit", 0.6f);
     }
 
-
+    IEnumerator deadCheck()
+    {
+        while (true)
+        {
+            if (health <= 0)
+            {
+                anim.SetTrigger("Die");
+                //dead = true;
+                yield return new WaitForSeconds(2f);
+                dead = false;
+                Delay();
+                //Invoke("Delay", 1f);
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
     public void Die()
     {
