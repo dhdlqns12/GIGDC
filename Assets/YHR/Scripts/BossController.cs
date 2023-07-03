@@ -59,7 +59,7 @@ public class BossController : MonoBehaviour
         isThink = true;
 
         renderer = GetComponent<SpriteRenderer>();
-
+        anim = GetComponent<Animator>();
         Invoke("Think", 2f);
 
         magmas.SetActive(true);
@@ -179,7 +179,7 @@ public class BossController : MonoBehaviour
         waterwallDwarn.SetActive(false);
 
         int roundNumA = 15;
-        anim.SetTrigger("attack");
+       anim.SetTrigger("attack");
         for (int index = 0; index < roundNumA; index++)
         {
 

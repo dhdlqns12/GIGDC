@@ -52,30 +52,30 @@ public class GameManager : MonoBehaviour
     public GameObject neighborAEvent;
     public GameObject foxKey;
     public GameObject foxSpawn;
-    public Transform foxSpawnPosition1;
-    public Vector3 foxSpawnVector1;
-    public Transform foxSpawnPosition2;
-    public Vector3 foxSpawnVector2;
-    public Transform foxSpawnPosition3;
-    public Vector3 foxSpawnVector3;
-    public Transform foxSpawnPosition4;
-    public Vector3 foxSpawnVector4;
-    public Transform foxSpawnPosition5;
-    public Vector3 foxSpawnVector5;
-    public Transform foxSpawnPosition6;
-    public Vector3 foxSpawnVector6;
-    public Transform foxSpawnPosition7;
-    public Vector3 foxSpawnVector7;
-    public Transform foxSpawnPosition8;
-    public Vector3 foxSpawnVector8;
-    public GameObject fox1;
-    public GameObject fox2;
-    public GameObject fox3;
-    public GameObject fox4;
-    public GameObject fox5;
-    public GameObject fox6;
-    public GameObject fox7;
-    public GameObject fox8;
+    //public Transform foxSpawnPosition1;
+    //public Vector3 foxSpawnVector1;
+    //public Transform foxSpawnPosition2;
+    //public Vector3 foxSpawnVector2;
+    //public Transform foxSpawnPosition3;
+    //public Vector3 foxSpawnVector3;
+    //public Transform foxSpawnPosition4;
+    //public Vector3 foxSpawnVector4;
+    //public Transform foxSpawnPosition5;
+    //public Vector3 foxSpawnVector5;
+    //public Transform foxSpawnPosition6;
+    //public Vector3 foxSpawnVector6;
+    //public Transform foxSpawnPosition7;
+    //public Vector3 foxSpawnVector7;
+    //public Transform foxSpawnPosition8;
+    //public Vector3 foxSpawnVector8;
+    //public GameObject fox1;
+    //public GameObject fox2;
+    //public GameObject fox3;
+    //public GameObject fox4;
+    //public GameObject fox5;
+    //public GameObject fox6;
+    //public GameObject fox7;
+    //public GameObject fox8;
     public mini5 _mini5;
     public GameObject dialogCollider15;
     public GameObject dialogCollider18;
@@ -96,22 +96,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         GameLoad();
-        foxSpawnPosition1.position = foxSpawn.transform.GetChild(0).gameObject.transform.position;
-        foxSpawnVector1 = new Vector3(foxSpawnPosition1.position.x, foxSpawnPosition1.position.y, 0);
-        foxSpawnPosition2.position = foxSpawn.transform.GetChild(1).gameObject.transform.position;
-        foxSpawnVector2 = new Vector3(foxSpawnPosition2.position.x, foxSpawnPosition2.position.y, 0);
-        foxSpawnPosition3.position = foxSpawn.transform.GetChild(2).gameObject.transform.position;
-        foxSpawnVector3 = new Vector3(foxSpawnPosition3.position.x, foxSpawnPosition3.position.y, 0);
-        foxSpawnPosition4.position = foxSpawn.transform.GetChild(3).gameObject.transform.position;
-        foxSpawnVector4 = new Vector3(foxSpawnPosition4.position.x, foxSpawnPosition4.position.y, 0);
-        foxSpawnPosition5.position = foxSpawn.transform.GetChild(4).gameObject.transform.position;
-        foxSpawnVector5 = new Vector3(foxSpawnPosition5.position.x, foxSpawnPosition5.position.y, 0);
-        foxSpawnPosition6.position = foxSpawn.transform.GetChild(5).gameObject.transform.position;
-        foxSpawnVector6 = new Vector3(foxSpawnPosition6.position.x, foxSpawnPosition6.position.y, 0);
-        foxSpawnPosition7.position = foxSpawn.transform.GetChild(6).gameObject.transform.position;
-        foxSpawnVector7 = new Vector3(foxSpawnPosition7.position.x, foxSpawnPosition7.position.y, 0);
-        foxSpawnPosition8.position = foxSpawn.transform.GetChild(7).gameObject.transform.position;
-        foxSpawnVector8 = new Vector3(foxSpawnPosition8.position.x, foxSpawnPosition8.position.y, 0);
+
     }
 
     public bool key = true;     // 함정발동 변수
@@ -193,6 +178,7 @@ public class GameManager : MonoBehaviour
         batSpawn.SetActive(false);
         dialogCollider18.SetActive(true);
         mousespawn.SetActive(false);
+        foxSpawn.SetActive(false);
         dialogCollider19.SetActive(true);
 
         boss.SetActive(false);
@@ -314,7 +300,6 @@ public class GameManager : MonoBehaviour
         foxSpawn.transform.GetChild(5).gameObject.SetActive(true);
         foxSpawn.transform.GetChild(6).gameObject.SetActive(true);
         foxSpawn.transform.GetChild(7).gameObject.SetActive(true);
-        foxSpawn.transform.GetChild(8).gameObject.SetActive(true);
     }
 
     public void GameOver_Menu()

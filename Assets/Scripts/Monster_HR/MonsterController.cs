@@ -43,12 +43,18 @@ public class MonsterController : MonoBehaviour
     public Animator anim;
     public Vector2 moveDiriection = new Vector2(1, 0);
 
+    AudioSource audiosource;
+    public AudioClip m_hit;
+    public AudioClip b_hit;
+    public AudioClip f_hit;
+
+
     void Awake()
     {
         m_State = EnemyState.Idle;
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        audiosource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         transform.position = new Vector3(InitialPos.transform.position.x, InitialPos.transform.position.y);
     }
@@ -252,7 +258,23 @@ public class MonsterController : MonoBehaviour
     }
     public void HitEnemy(int dam)
     {
-        if (m_State == EnemyState.Damaged || m_State == EnemyState.Die)
+        if (enemyName == "Mouse")
+        {
+            audiosource.clip = m_hit;
+            audiosource.Play();
+        }
+        else if(enemyName == "Bat")
+        {
+            audiosource.clip = b_hit;
+            audiosource.Play();
+        }
+        else if(enemyName =="Fox")
+        {
+            audiosource.clip = f_hit;
+            audiosource.Play();
+        }
+
+            if (m_State == EnemyState.Damaged || m_State == EnemyState.Die)
         {
             return;
         }

@@ -18,6 +18,6 @@ public class BossHP : MonoBehaviour
     private void Update()
     {
         float HP = boss.health;
-        healthPointBar.fillAmount = HP / 100f;
+        healthPointBar.fillAmount = HP / 1000f;
     }
 }
