@@ -52,7 +52,7 @@ public class BossController : MonoBehaviour
     //엔딩이동변수
     public GameObject player;
     public Transform teleport;
-
+    Animator anim;
 
     void Awake()
     {
@@ -179,6 +179,7 @@ public class BossController : MonoBehaviour
         waterwallDwarn.SetActive(false);
 
         int roundNumA = 15;
+        anim.SetTrigger("attack");
         for (int index = 0; index < roundNumA; index++)
         {
 
@@ -245,6 +246,7 @@ public class BossController : MonoBehaviour
         waterwallC.SetActive(false);
         waterwallD.SetActive(false);
 
+        anim.SetTrigger("attack");
         int roundNumA = 15;
         for (int index = 0; index < roundNumA; index++)
         {
