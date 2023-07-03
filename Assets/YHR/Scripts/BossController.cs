@@ -6,7 +6,7 @@ public class BossController : MonoBehaviour
 {
 
 
-    public int health = 100;
+    public int health = 1000;
 
 
     public GameObject bulletObjA;
@@ -23,6 +23,7 @@ public class BossController : MonoBehaviour
     public GameObject waterwallCwarn;
     public GameObject waterwallDwarn;
     public GameObject effect;
+    public GameObject poolmanager;
 
     bool closeattack = false;
     bool longattack = false;
@@ -36,7 +37,14 @@ public class BossController : MonoBehaviour
     public int patternIndex;
     public int curPatternCount;
     public int[] maxPatternCount;
+    public GameObject magmas;
+    public GameObject healthbar;
 
+
+    //bgm °ü¸®
+    public GameObject Gbgm;
+    public GameObject Bbgm;
+    public GameObject BHbgm;
 
 
     SpriteRenderer renderer;
@@ -49,11 +57,23 @@ public class BossController : MonoBehaviour
     void Awake()
     {
         isThink = true;
+
         renderer = GetComponent<SpriteRenderer>();
 
-        Invoke("Think",2f);
+        Invoke("Think", 2f);
+
+        magmas.SetActive(true);
+        healthbar.SetActive(true);
+        Gbgm.SetActive(false);
+        Bbgm.SetActive(true);
     }
 
+    private void OnEnable()
+    {
+        poolmanager.SetActive(true);
+        health = 1000;
+
+    }
     private void Update()
     {
 
@@ -137,7 +157,8 @@ public class BossController : MonoBehaviour
 
         curPatternCount++;
 
-        Invoke("Think", 20f);
+        Invoke("Think", 10f);
+
 
     }
 
@@ -157,7 +178,7 @@ public class BossController : MonoBehaviour
         waterwallCwarn.SetActive(false);
         waterwallDwarn.SetActive(false);
 
-        int roundNumA = 41;
+        int roundNumA = 15;
         for (int index = 0; index < roundNumA; index++)
         {
 
@@ -181,8 +202,7 @@ public class BossController : MonoBehaviour
             Invoke("LongAttack_B", 0.3f);
 
         else
-            Invoke("Think", 5);
-
+            Invoke("Think", 3);
     }
     void CloseAttack_A()
     {
@@ -205,7 +225,7 @@ public class BossController : MonoBehaviour
 
         curPatternCount++;
 
-        Invoke("Think", 20f);
+        Invoke("Think", 10f);
     }
 
     void CloseAttack_B()
@@ -215,7 +235,7 @@ public class BossController : MonoBehaviour
         vinespawnAwarn.SetActive(false);
         vinespawnA.SetActive(false);
 
-        Invoke("VineB", 3f);
+        //Invoke("VineB", 3f);
         waterwallAwarn.SetActive(false);
         waterwallBwarn.SetActive(false);
         waterwallCwarn.SetActive(false);
@@ -225,7 +245,7 @@ public class BossController : MonoBehaviour
         waterwallC.SetActive(false);
         waterwallD.SetActive(false);
 
-        int roundNumA = 41;
+        int roundNumA = 15;
         for (int index = 0; index < roundNumA; index++)
         {
 
@@ -249,7 +269,7 @@ public class BossController : MonoBehaviour
             Invoke("CloseAttack_B", 0.3f);
 
         else
-            Invoke("Think", 5);
+            Invoke("Think", 3);
     }
 
     private void VineA()
@@ -269,9 +289,16 @@ public class BossController : MonoBehaviour
             waterwallA.SetActive(true);
             waterwallAwarn.SetActive(false);
             waterwallB.SetActive(false);
-            waterwallBwarn.SetActive(true);
-            Invoke("WaterB", 2f);
+            waterwallBwarn.SetActive(false);
+            Invoke("WaterAA", 1f);
         }
+    }
+
+    private void WaterAA()
+    {
+        waterwallA.SetActive(false);
+        waterwallBwarn.SetActive(true);
+        Invoke("WaterB", 1f);
     }
     private void WaterB()
     {
@@ -280,9 +307,17 @@ public class BossController : MonoBehaviour
             waterwallB.SetActive(true);
             waterwallBwarn.SetActive(false);
             waterwallA.SetActive(false);
-            waterwallAwarn.SetActive(true);
-            Invoke("WaterA", 2f);
+            waterwallAwarn.SetActive(false);
+            Invoke("WaterBB", 1f);
         }
+    }
+
+    private void WaterBB()
+    {
+        waterwallB.SetActive(false);
+        waterwallAwarn.SetActive(true);
+        Invoke("WaterA", 1f);
+
     }
     private void WaterC()
     {
@@ -291,8 +326,18 @@ public class BossController : MonoBehaviour
             waterwallC.SetActive(true);
             waterwallCwarn.SetActive(false);
             waterwallD.SetActive(false);
+            waterwallDwarn.SetActive(false);
+            Invoke("WaterCC", 1f);
+        }
+    }
+
+    private void WaterCC()
+    {
+        if (longattack)
+        {
+            waterwallC.SetActive(false);
             waterwallDwarn.SetActive(true);
-            Invoke("WaterD", 2f);
+            Invoke("WaterD", 1f);
         }
     }
     private void WaterD()
@@ -302,8 +347,18 @@ public class BossController : MonoBehaviour
             waterwallD.SetActive(true);
             waterwallDwarn.SetActive(false);
             waterwallC.SetActive(false);
+            waterwallCwarn.SetActive(false);
+            Invoke("WaterDD", 1f);
+        }
+    }
+
+    private void WaterDD()
+    {
+        if (longattack)
+        {
+            waterwallD.SetActive(false);
             waterwallCwarn.SetActive(true);
-            Invoke("WaterC", 2f);
+            Invoke("WaterC", 1f);
         }
     }
     void Die()
@@ -320,7 +375,10 @@ public class BossController : MonoBehaviour
         waterwallBwarn.SetActive(false);
         waterwallCwarn.SetActive(false);
         waterwallDwarn.SetActive(false);
-
+        magmas.SetActive(false);
+        healthbar.SetActive(false);
+        Bbgm.SetActive(false);
+        BHbgm.SetActive(true);
 
         StartCoroutine(_Die());
     }

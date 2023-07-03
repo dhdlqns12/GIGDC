@@ -19,10 +19,11 @@ public class MonsterController : MonoBehaviour
     public string enemyName;  //몬스터 종류 구분 변수
     public float speed;   //몬스터 속도 변수
     public int health;
+    public int maxhealth;
     public float maxShotDelay; //총알 지연변수들
     public float curShotDelay;
 
-
+    public GameObject InitialPos;
     public Transform target;  //몬스터가 추적하는 플레이어 위치값 변수
     public Vector3 direction;
     public GameObject player;
@@ -49,6 +50,16 @@ public class MonsterController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         anim = GetComponent<Animator>();
+        transform.position = new Vector3(InitialPos.transform.position.x, InitialPos.transform.position.y);
+    }
+    private void OnEnable()
+    {
+        m_State = EnemyState.Idle;
+        rigid = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        health = maxhealth;
+        anim = GetComponent<Animator>();
+        transform.position = new Vector3(InitialPos.transform.position.x, InitialPos.transform.position.y);
     }
 
 

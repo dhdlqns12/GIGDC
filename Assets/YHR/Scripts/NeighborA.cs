@@ -24,14 +24,14 @@ public class NeighborA : MonoBehaviour
         if(collision.tag == "Player")
         {
             isEffect = true;
-            collision.GetComponent<PlayerController>().Trap();
+            collision.GetComponent<PlayerController>().TrapA();
             ad.Play();            
             camera.onhit = true;
-            camera.VibrateForTime(3f);
+            camera.VibrateForTime(5f);
             redscreen.SetActive(true);
 
-            Invoke("screenoff", 3f);
-            Invoke("objoff", 3f);
+            Invoke("screenoff", 5f);
+            Invoke("objoff", 5f);
         }
     }
 

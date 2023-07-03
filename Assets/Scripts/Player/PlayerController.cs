@@ -79,6 +79,11 @@ public class PlayerController : MonoBehaviour
     public bool dead = false;
     public Vector2 moveDiriection; //애니메이션에 사용할 방향
 
+    AudioSource audiosource;
+    public AudioClip broombgm;
+    public AudioClip slingshotbgm;
+    public AudioClip axebgm;
+
     private void OnEnable()
     {
         canMove = true;
@@ -91,6 +96,7 @@ public class PlayerController : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        audiosource = GetComponent<AudioSource>();
         cam = mainCamera;
     }
     void Update()
@@ -266,12 +272,19 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0)) //(Input.GetKey(KeyCode.Space))
             {
+                audiosource.clip = broombgm;
+                audiosource.Play();
                 Collider2D[] collider2ds = Physics2D.OverlapBoxAll(pos1.position, boxSize1, 0);
                 foreach (Collider2D collider in collider2ds)
                 {
-                    if (collider.tag == "Monster" || collider.tag == "Boss")
+                    if (collider.tag == "Monster")
                     {
                         collider.GetComponent<MonsterController>().HitEnemy(1);
+                        Debug.Log("-1");
+                    }
+                    if (collider.tag == "Boss")
+                    {
+                        collider.GetComponent<BossController>().HitEnemy(1);
                         Debug.Log("-1");
                     }
                 }
@@ -298,7 +311,8 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButton(0))
             {
-
+                audiosource.clip = slingshotbgm;
+                audiosource.Play();
                 Vector3 direction = (Mouseposition - PlayerPos);
 
                 GameObject MakeBullet = GameManager.Instance.pool.Get(2);
@@ -329,17 +343,23 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0)) //(Input.GetKey(KeyCode.Space))
             {
+                audiosource.clip = axebgm;
+                audiosource.Play();
                 GameObject aEffect = Instantiate(axeEffect, transform.position, transform.rotation);
 
                 Destroy(aEffect, 0.5f);
                 Collider2D[] collider2ds = Physics2D.OverlapBoxAll(pos2.position, boxSize2, 0);
                 foreach (Collider2D collider in collider2ds)
                 {
-                    if (collider.tag == "Monster" || collider.tag == "Boss")
+                    if (collider.tag == "Monster")
+                    {
+                        collider.GetComponent<MonsterController>().HitEnemy(10);
+                        Debug.Log("-10");
+                    }
+                    if (collider.tag == "Boss")
                     {
                         collider.GetComponent<BossController>().HitEnemy(10);
                         Debug.Log("-10");
-
                     }
                 }
                 //공격
@@ -419,7 +439,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             ispotion = false;
-            health = 10f;
+            health = 300f;
 
             curPTime = 0;
         }
@@ -507,7 +527,11 @@ public class PlayerController : MonoBehaviour
         speed = 0;
         Invoke("TrapEnd", 2f);
     }
-
+    public void TrapA()
+    {
+        speed = 0;
+        Invoke("TrapEnd", 5f);
+    }
     void TrapEnd()
     {
         speed = Maxspeed;

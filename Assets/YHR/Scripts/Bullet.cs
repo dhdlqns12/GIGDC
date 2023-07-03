@@ -28,13 +28,13 @@ public class Bullet : MonoBehaviour
     {
         if (collision.tag == "Monster")
         {
-            collision.GetComponent<MonsterController>().HitEnemy(1);
+            collision.GetComponent<MonsterController>().HitEnemy(5);
             Debug.Log("-1");
             gameObject.SetActive(false);
         }
         if (collision.tag == "Boss")
         {
-            collision.GetComponent<BossController>().HitEnemy(1);
+            collision.GetComponent<BossController>().HitEnemy(5);
             Debug.Log("-1");
             gameObject.SetActive(false);
         }

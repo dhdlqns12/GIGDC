@@ -78,6 +78,9 @@ public class GameManager : MonoBehaviour
     public GameObject fox8;
     public mini5 _mini5;
     public GameObject dialogCollider15;
+    
+
+    public GameObject mousespawn;
 
     private void Awake()    //╫л╠шео
     {
@@ -187,8 +190,9 @@ public class GameManager : MonoBehaviour
         playerController.isaxe = isAxe;
         dialogCollider7.SetActive(true);
         batSpawn.SetActive(false);
+        mousespawn.SetActive(false);
         dialogCollider19.SetActive(true);
-        bossController.health = 100;
+
         boss.SetActive(false);
         isActive19 = false;
     }
@@ -212,13 +216,25 @@ public class GameManager : MonoBehaviour
         {
             broom.SetActive(true);
         }
+        if (!playerController.isbroom)
+        {
+            broom.SetActive(false);
+        }
         if (playerController.isslingshot)
         {
             slingshot.SetActive(true);
         }
+        if (!playerController.isslingshot)
+        {
+            slingshot.SetActive(false);
+        }
         if (playerController.isaxe)
         {
             axe.SetActive(true);
+        }
+        if (!playerController.isaxe)
+        {
+            axe.SetActive(false);
         }
         if (!playerController.ispotion)
         {
@@ -264,15 +280,29 @@ public class GameManager : MonoBehaviour
         foxKey.transform.GetChild(2).gameObject.SetActive(true);
         foxKey.transform.GetChild(3).gameObject.SetActive(false);
         foxKey.transform.GetChild(4).gameObject.SetActive(false);
-        fox1.transform.position = foxSpawnVector1;
-        fox2.transform.position = foxSpawnVector2;
-        fox3.transform.position = foxSpawnVector3;
-        fox4.transform.position = foxSpawnVector4;
-        fox5.transform.position = foxSpawnVector5;
-        fox6.transform.position = foxSpawnVector6;
-        fox7.transform.position = foxSpawnVector7;
-        fox8.transform.position = foxSpawnVector8;
         dialogCollider14.SetActive(true);
+        mousespawn.SetActive(false);
+        mousespawn.transform.GetChild(0).gameObject.SetActive(false);
+        mousespawn.transform.GetChild(1).gameObject.SetActive(false);
+        mousespawn.transform.GetChild(2).gameObject.SetActive(false);
+        mousespawn.transform.GetChild(3).gameObject.SetActive(false);
+        mousespawn.transform.GetChild(4).gameObject.SetActive(false);
+        mousespawn.transform.GetChild(5).gameObject.SetActive(false);
+        mousespawn.transform.GetChild(6).gameObject.SetActive(false);
+        batSpawn.SetActive(false);
+        batSpawn.transform.GetChild(0).gameObject.SetActive(true);
+        batSpawn.transform.GetChild(1).gameObject.SetActive(true);
+        batSpawn.transform.GetChild(2).gameObject.SetActive(true);
+        batSpawn.transform.GetChild(3).gameObject.SetActive(true);
+        batSpawn.transform.GetChild(4).gameObject.SetActive(true);
+        batSpawn.transform.GetChild(5).gameObject.SetActive(true);
+        batSpawn.transform.GetChild(6).gameObject.SetActive(true);
+        batSpawn.transform.GetChild(7).gameObject.SetActive(true);
+        batSpawn.transform.GetChild(8).gameObject.SetActive(true);
+        batSpawn.transform.GetChild(9).gameObject.SetActive(true);
+        batSpawn.transform.GetChild(10).gameObject.SetActive(true);
+        batSpawn.transform.GetChild(11).gameObject.SetActive(true);
+
         foxSpawn.SetActive(false);
         foxSpawn.transform.GetChild(0).gameObject.SetActive(true);
         foxSpawn.transform.GetChild(1).gameObject.SetActive(true);
