@@ -56,6 +56,7 @@ public class BossController : MonoBehaviour
 
     void Awake()
     {
+        anim = GetComponent<Animator>();
         isThink = true;
 
         renderer = GetComponent<SpriteRenderer>();
