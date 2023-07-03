@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class End : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class End : MonoBehaviour
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
+        Invoke("GoMain", 22f);
     }
 
     private void Update()
@@ -30,5 +32,10 @@ public class End : MonoBehaviour
         {
             isScrolling = false;
         }
+    }
+
+    void GoMain()
+    {
+        SceneManager.LoadScene("GameMain");
     }
 }

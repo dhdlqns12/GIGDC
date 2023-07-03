@@ -78,7 +78,8 @@ public class GameManager : MonoBehaviour
     public GameObject fox8;
     public mini5 _mini5;
     public GameObject dialogCollider15;
-    
+    public GameObject dialogCollider18;
+
 
     public GameObject mousespawn;
 
@@ -190,6 +191,7 @@ public class GameManager : MonoBehaviour
         playerController.isaxe = isAxe;
         dialogCollider7.SetActive(true);
         batSpawn.SetActive(false);
+        dialogCollider18.SetActive(true);
         mousespawn.SetActive(false);
         dialogCollider19.SetActive(true);
 

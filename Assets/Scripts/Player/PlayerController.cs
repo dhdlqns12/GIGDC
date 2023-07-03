@@ -68,6 +68,8 @@ public class PlayerController : MonoBehaviour
     public bool isActive21 = false;
     public bool isActive26 = false;
     public bool isActive27 = false;
+    public bool isActive28 = false;
+    public GameObject fadeOut;
 
 
     //애니메이션 변수들
@@ -128,6 +130,7 @@ public class PlayerController : MonoBehaviour
         Active_DialogCollider21();
         Active_DialogCollider27();
         Active_DialogCollider28();
+        Active_FadeOut();
 
         // 좌측 방향키면 -1, 우측 방향키면 1, 상측 방향키면 1, 하측 방향키면 -1
         // 버튼을 눌렀을 때 실행
@@ -615,17 +618,30 @@ public class PlayerController : MonoBehaviour
     }
     public void Active_DialogCollider27()
     {
-        if(dialogCollider26.activeSelf==false&&isActive26==false)
+        if (dialogCollider26.activeSelf == false && isActive26 == false)
         {
             dialogCollider27.SetActive(true);
             isActive27 = true;
+            isActive26 = true;
         }
     }
+
     public void Active_DialogCollider28()
     {
-        if(isActive27==true&&dialogCollider27.activeSelf==false)
+        if (isActive27 == true && dialogCollider27.activeSelf == false)
         {
             dialogCollider28.SetActive(true);
+            isActive27 = false;
+            isActive28 = true;
+        }
+    }
+
+    public void Active_FadeOut()
+    {
+        if (isActive28 == true && dialogCollider28.activeSelf == false)
+        {
+            fadeOut.SetActive(true);
+            isActive28 = false;
         }
     }
 }

@@ -36,7 +36,7 @@ public class TalkManager : MonoBehaviour
         talkData.Add(113, new string[] { "인형\n또 갇혔어 여우들이 열쇠를 가지고 있나봐", "플레이어\n해치우자!" });
         talkData.Add(114, new string[] { "인형\n열쇠가 많네? 뭐가 맞을지 찾아보자!" });
         talkData.Add(115, new string[] { "인형\n여기도 부모님이랑 삐삐가 없네...", "인형\n삐삐가 호숫가를 좋아했으니까 호수로 가보자." });
-        talkData.Add(116, new string[] { "인형\n다리가 이상해!", "플레이어\n일단 구멍피해서 가보자!." });
+        talkData.Add(116, new string[] { "인형\n다리가 이상해!", "플레이어\n일단 불길피해서 가보자!." });
         talkData.Add(117, new string[] { "인형\n도끼가 있네, 챙겨가자." });
         talkData.Add(118, new string[] { "인형\n저 괴물은 뭐지? 괴물의 아래에 삐삐 목줄이 있어.", "플레이어\n저 괴물을 물리치자." });
         talkData.Add(119, new string[] { "플레이어\n이게 코코였다고?", "플레이어\n그럴리가 없어!" });
