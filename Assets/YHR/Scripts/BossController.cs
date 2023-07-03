@@ -52,6 +52,7 @@ public class BossController : MonoBehaviour
     //엔딩이동변수
     public GameObject player;
     public Transform teleport;
+    public GameObject shadow;
     Animator anim;
 
     void Awake()
@@ -387,11 +388,25 @@ public class BossController : MonoBehaviour
     }
     IEnumerator _Die()
     {
-        yield return new WaitForSeconds(0.5f);
+        WaitForSeconds delay = new WaitForSeconds(0.5f);
         Debug.Log("DIE !");
 
         player.transform.position = teleport.position;
         GameManager.Instance.key = false;
+
+        yield return delay;
+        shadow.SetActive(true);
+        yield return delay;
+        shadow.SetActive(false);
+        yield return delay;
+        shadow.SetActive(true);
+        yield return delay;
+        shadow.SetActive(false);
+        yield return delay;
+        shadow.SetActive(true);
+        yield return delay;
+        shadow.SetActive(false);
+
 
         Destroy(gameObject);
     }

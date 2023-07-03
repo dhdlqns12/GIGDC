@@ -6,7 +6,7 @@ public class MonsterController_Wolf : MonoBehaviour
 {
     public Transform player;
     float speed = 2f;
-    public float range = 10f;
+    public float range = 20f;
     public Transform originTransform1;
     public Vector3 originVector1;
     public Transform originTransform2;
@@ -28,6 +28,9 @@ public class MonsterController_Wolf : MonoBehaviour
 
     void Update()
     {
+        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody.velocity = Vector3.zero; 
+
         Invoke("Follow", 3f);
 
     }

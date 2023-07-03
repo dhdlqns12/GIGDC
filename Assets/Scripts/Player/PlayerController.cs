@@ -103,18 +103,17 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        if (dead)
+        {
+            return;
+        }
+
         Vector3 worldPos = cam.WorldToScreenPoint(Input.mousePosition);
         Mouseposition = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.farClipPlane));
-
 
         if(myGameManager.isAction==true&&neighborA.isEffect==true)
         {
             anim.SetTrigger("Idle");
-        }
-
-        if (health <= 0)
-        {
-            return;
         }
 
         CheckCam();
@@ -210,6 +209,13 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (dead)
+        {
+            return;
+        }
+
+        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody.velocity = Vector3.zero;   //충돌시에 떨림과 밀림 방지
 
         if (canMove)
         {
@@ -404,12 +410,12 @@ public class PlayerController : MonoBehaviour
     {
         while (true)
         {
-            if (health <= 0)
+            if (health <= 0 && dead == false)
             {
                 anim.SetTrigger("Die");
-                //dead = true;
+                dead = true;
                 yield return new WaitForSeconds(2f);
-                dead = false;
+                //dead = false;
                 Delay();
                 //Invoke("Delay", 1f);
             }
@@ -422,7 +428,7 @@ public class PlayerController : MonoBehaviour
         if (dead)
         {
             anim.SetTrigger("Die");
-            dead = false;
+            //dead = false;
             Invoke("Delay", 2f);
         }
     }
@@ -433,6 +439,7 @@ public class PlayerController : MonoBehaviour
         {
             wolfDead = false;
             gameOverUI.SetActive(true);
+            dead = false;
             Time.timeScale = 0;
         }
         
@@ -493,11 +500,12 @@ public class PlayerController : MonoBehaviour
         {
             Trap();
         }
-        if(collision.tag == "TrabObject")
+        if(collision.tag == "TrabObject" && dead == false)
         {
             dead = true;
             trapDead = true;
-            Invoke("Die", 0.5f);
+            Die();
+            //Invoke("Die", 0.5f);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)

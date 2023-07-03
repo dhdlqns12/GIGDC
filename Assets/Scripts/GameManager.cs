@@ -183,6 +183,7 @@ public class GameManager : MonoBehaviour
 
         boss.SetActive(false);
         isActive19 = false;
+        playerController.dead = false;
     }
 
     public void SaveYes()
