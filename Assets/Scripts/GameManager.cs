@@ -39,10 +39,14 @@ public class GameManager : MonoBehaviour
     public bool save4 = false;
     public GameObject wolf1;
     public MonsterController_Wolf wolfController;
+    public BossController bossController;
+    public GameObject boss;
+    public bool isActive19=false;
     public GameObject dialogCollider7;
     public GameObject batSpawn;
     public GameObject dialogCollider10;
     public GameObject dialogCollider14;
+    public GameObject dialogCollider19;
     public GameObject miniGame2Go;
     public GameObject wolf2;
     public GameObject neighborAEvent;
@@ -113,6 +117,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if(dialogCollider19.activeSelf==false&&isActive19==false)
+        {
+            boss.SetActive(true);
+            isActive19 = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             IMG.SetActive(true);
@@ -177,6 +187,10 @@ public class GameManager : MonoBehaviour
         playerController.isaxe = isAxe;
         dialogCollider7.SetActive(true);
         batSpawn.SetActive(false);
+        dialogCollider19.SetActive(true);
+        bossController.health = 100;
+        boss.SetActive(false);
+        isActive19 = false;
     }
 
     public void SaveYes()

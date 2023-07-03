@@ -37,8 +37,6 @@ public class BossController : MonoBehaviour
     public int curPatternCount;
     public int[] maxPatternCount;
 
-    public GameObject dialogCollider19;
-
 
 
     SpriteRenderer renderer;
@@ -47,39 +45,35 @@ public class BossController : MonoBehaviour
     public GameObject player;
     public Transform teleport;
 
+
     void Awake()
     {
-        //if (dialogCollider19.activeSelf == false)
-        //    isThink = true;
-
+        isThink = true;
         renderer = GetComponent<SpriteRenderer>();
 
-        Invoke("Think", 10f);
+        Invoke("Think",2f);
     }
 
     private void Update()
     {
-        if (dialogCollider19.activeSelf == false)
-            isThink = true;
+
     }
 
     void Returnhit()
     {
-        if (dialogCollider19.activeSelf == false)
-            renderer.color = new Color(1, 1, 1, 1);
+        renderer.color = new Color(1, 1, 1, 1);
     }
 
     public void HitEnemy(int dam)
     {
-        if (dialogCollider19.activeSelf == false)
+
+        health -= dam;
+        Instantiate(effect, transform.position, transform.rotation);
+        if (health <= 0)
         {
-            health -= dam;
-            Instantiate(effect, transform.position, transform.rotation);
-            if (health <= 0)
-            {
-                Die();
-            }
+            Die();
         }
+        
 
         renderer.color = new Color(1, 0, 0, 0.5f);
         Invoke("Returnhit", 0.6f);
