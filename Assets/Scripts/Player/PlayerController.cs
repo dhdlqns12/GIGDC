@@ -188,6 +188,9 @@ public class PlayerController : MonoBehaviour
         {
             myGameManager.Action(scanObject);
         }
+
+        if (curPTime >= maxPTime)
+            ispotion = true;
     }
 
     void CheckCam()
@@ -439,6 +442,7 @@ public class PlayerController : MonoBehaviour
     {
         if (curPTime < maxPTime)
             return;
+        
         if (Input.GetKeyDown(KeyCode.R))
         {
             ispotion = false;
@@ -446,6 +450,7 @@ public class PlayerController : MonoBehaviour
 
             curPTime = 0;
         }
+
     }
     IEnumerator MoveCoroutine()
     {
