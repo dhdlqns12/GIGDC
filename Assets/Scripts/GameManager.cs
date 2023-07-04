@@ -245,7 +245,7 @@ public class GameManager : MonoBehaviour
         {
             GameLoad();
         }
-        plcr.health = 10f;
+        plcr.health = 100f;
         plcr.anim.SetTrigger("Delay");
         Time.timeScale = 1;
         plcr.spriteRenderer.color = new Color(1, 1, 1, 1);

@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
     public bool isActive27 = false;
     public bool isActive28 = false;
     public GameObject fadeOut;
+    public GameObject lastKey;
 
 
     //애니메이션 변수들
@@ -130,6 +131,7 @@ public class PlayerController : MonoBehaviour
         Active_DialogCollider27();
         Active_DialogCollider28();
         Active_FadeOut();
+        Active_LastKey();
 
         // 좌측 방향키면 -1, 우측 방향키면 1, 상측 방향키면 1, 하측 방향키면 -1
         // 버튼을 눌렀을 때 실행
@@ -663,6 +665,13 @@ public class PlayerController : MonoBehaviour
         {
             fadeOut.SetActive(true);
             isActive28 = false;
+        }
+    }
+    public void Active_LastKey()
+    {
+        if (dialogCollider21.activeSelf == true)
+        {
+            lastKey.SetActive(true);
         }
     }
 }
