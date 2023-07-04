@@ -185,10 +185,11 @@ public class BossController : MonoBehaviour
         for (int index = 0; index < roundNumA; index++)
         {
 
-            //GameObject bullet = Instantiate(bulletObjA, transform.position, Quaternion.identity);
-            GameObject bullet = GameManager.Instance.pool.Get(0);
-            bullet.transform.position = transform.position;
-            bullet.transform.rotation = Quaternion.identity;
+            GameObject bullet = Instantiate(bulletObjA, transform.position, Quaternion.identity);
+            //GameObject bullet = GameManager.Instance.pool.Get(0);
+            //bullet.transform.position = transform.position;
+            //bullet.transform.rotation = Quaternion.identity;
+
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
             Vector2 dicVec = new Vector2(Mathf.Cos(Mathf.PI * 2 * index / roundNumA),
                 Mathf.Sin(Mathf.PI * 2 * index / roundNumA));
@@ -253,10 +254,10 @@ public class BossController : MonoBehaviour
         for (int index = 0; index < roundNumA; index++)
         {
 
-            //GameObject bullet = Instantiate(bulletObjA, transform.position, Quaternion.identity);
-            GameObject bullet = GameManager.Instance.pool.Get(0);
-            bullet.transform.position = transform.position;
-            bullet.transform.rotation = Quaternion.identity;
+            GameObject bullet = Instantiate(bulletObjA, transform.position, Quaternion.identity);
+            //GameObject bullet = GameManager.Instance.pool.Get(0);
+            //bullet.transform.position = transform.position;
+            //bullet.transform.rotation = Quaternion.identity;
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
             Vector2 dicVec = new Vector2(Mathf.Cos(Mathf.PI * 2 * index / roundNumA),
                 Mathf.Sin(Mathf.PI * 2 * index / roundNumA));

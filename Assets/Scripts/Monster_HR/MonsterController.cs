@@ -23,7 +23,9 @@ public class MonsterController : MonoBehaviour
     public float maxShotDelay; //총알 지연변수들
     public float curShotDelay;
 
-    public GameObject InitialPos;
+    public Transform InitialPos;
+    Transform spawnPos;
+
     public Transform target;  //몬스터가 추적하는 플레이어 위치값 변수
     public Vector3 direction;
     public GameObject player;
@@ -56,7 +58,8 @@ public class MonsterController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         audiosource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
-        transform.position = new Vector3(InitialPos.transform.position.x, InitialPos.transform.position.y);
+        spawnPos = InitialPos;
+        transform.position = spawnPos.transform.position;
     }
     private void OnEnable()
     {
@@ -65,7 +68,7 @@ public class MonsterController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = maxhealth;
         anim = GetComponent<Animator>();
-        transform.position = new Vector3(InitialPos.transform.position.x, InitialPos.transform.position.y);
+        transform.position = spawnPos.transform.position ;
     }
 
 

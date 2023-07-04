@@ -507,9 +507,14 @@ public class PlayerController : MonoBehaviour
             Die();
             //Invoke("Die", 0.5f);
         }
+
+      
+
+
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
+
         if (myGameManager.isAction == true && collision.tag == "broom")
         {
             isbroom = true;
