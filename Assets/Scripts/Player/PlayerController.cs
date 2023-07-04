@@ -521,11 +521,14 @@ public class PlayerController : MonoBehaviour
             weapon = 1;
         }
 
-        if (myGameManager.isAction == true && collision.tag == "slingshot")
+        if (myGameManager.isAction == true)
         {
+            if(collision.tag == "slingshot")
             isslingshot = true;
+
             weapon = 2;
         }
+
         if (myGameManager.isAction == true && collision.tag == "axe")
         {
             isaxe = true;
