@@ -531,9 +531,11 @@ public class PlayerController : MonoBehaviour
             weapon = 2;
         }
 
-        if (myGameManager.isAction == true && collision.tag == "axe")
+        if (myGameManager.isAction == true)
         {
+            if(collision.tag=="axe")
             isaxe = true;
+
             weapon = 3;
         }
     }
