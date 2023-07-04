@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterController_Wolf : MonoBehaviour
 {
     public Transform player;
-    float speed = 2f;
+    public float speed = 2f;
     public float range = 20f;
     public Transform originTransform1;
     public Vector3 originVector1;
