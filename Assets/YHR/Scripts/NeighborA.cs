@@ -40,6 +40,7 @@ public class NeighborA : MonoBehaviour
         redscreen.SetActive(false);
         dialogCollider12.SetActive(true);
         isEffect = false;
+        camera.onhit = false;
     }
 
     void objoff()
