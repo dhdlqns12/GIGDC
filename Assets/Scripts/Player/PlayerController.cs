@@ -328,12 +328,13 @@ public class PlayerController : MonoBehaviour
                 audiosource.clip = slingshotbgm;
                 audiosource.Play();
                 Vector3 direction = (Mouseposition - PlayerPos);
-
-                GameObject MakeBullet = GameManager.Instance.pool.Get(2);
                 float z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                //GameObject MakeBullet = GameManager.Instance.pool.Get(2);
+                GameObject MakeBullet = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, z));
 
-                MakeBullet.transform.position = transform.position;
-                MakeBullet.transform.rotation = Quaternion.Euler(0, 0, z);
+
+                //MakeBullet.transform.position = transform.position;
+                //MakeBullet.transform.rotation = Quaternion.Euler(0, 0, z);
 
 
                 curTime = coolTime;

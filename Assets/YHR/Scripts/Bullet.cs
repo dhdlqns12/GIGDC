@@ -9,8 +9,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("bulletoff", 1.5f);
-        //Destroy(gameObject, 3f);
+        Destroy(gameObject, 1f);
     }
     void Awake()
     {
