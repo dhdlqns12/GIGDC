@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour
     }
     private void Hp_Bar()
     {
-        hpSlider.value = Mathf.Lerp(hpSlider.value, playerController.health / 10, Time.deltaTime * 100);
+        hpSlider.value = Mathf.Lerp(hpSlider.value, playerController.health / 100, Time.deltaTime * 100);
     }
 
     public void GameSave()

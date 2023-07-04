@@ -453,7 +453,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             ispotion = false;
-            health = 300f;
+            health = 100f;
 
             curPTime = 0;
         }

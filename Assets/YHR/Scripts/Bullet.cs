@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Invoke("bulletoff", 1.5f);
         //Destroy(gameObject, 3f);
     }
     void Awake()
@@ -38,5 +38,10 @@ public class Bullet : MonoBehaviour
             Debug.Log("-1");
             gameObject.SetActive(false);
         }
+    }
+
+    void bulletoff()
+    {
+        gameObject.SetActive(false);
     }
 }
