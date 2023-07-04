@@ -21,7 +21,7 @@ public class EnemyAttack : MonoBehaviour
         }
         else if (enemyName == "Bat")
         {
-            Invoke("off", 0.7f);
+            Invoke("off", 1f);
         }
         else if (enemyName == "Fox")
         {
