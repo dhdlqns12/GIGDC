@@ -167,14 +167,14 @@ public class GameManager : MonoBehaviour
         bool isAxe = System.Convert.ToBoolean(PlayerPrefs.GetInt("isAxe"));
 
 
-
+        playerController.dead = false;
         player.transform.position = new Vector3(x, y, 0);
         playerCamera.SetActive(true);
-        playerCamera.transform.position = new Vector3(0, 0, -10);
+        playerCamera.transform.position = new Vector3(0, 0, -10); 
+        dialogCollider7.SetActive(true);
         playerController.isbroom = isBroom;
         playerController.isslingshot = isSlingShot;
         playerController.isaxe = isAxe;
-        dialogCollider7.SetActive(true);
         batSpawn.SetActive(false);
         dialogCollider18.SetActive(true);
         mousespawn.SetActive(false);
@@ -183,7 +183,6 @@ public class GameManager : MonoBehaviour
 
         boss.SetActive(false);
         isActive19 = false;
-        playerController.dead = false;
     }
 
     public void SaveYes()
