@@ -72,10 +72,15 @@ public class BossController : MonoBehaviour
 
     private void OnEnable()
     {
+        isThink = true;
         poolmanager.SetActive(true);
         health = 1000;
         Invoke("Think", 2f);
 
+        magmas.SetActive(true);
+        healthbar.SetActive(true);
+        Gbgm.SetActive(false);
+        Bbgm.SetActive(true);
     }
     private void Update()
     {
@@ -366,6 +371,27 @@ public class BossController : MonoBehaviour
             waterwallCwarn.SetActive(true);
             Invoke("WaterC", 1f);
         }
+    }
+
+    private void OnDisable()
+    {
+        vinespawnAwarn.SetActive(false);
+        vinespawnBwarn.SetActive(false);
+        vinespawnA.SetActive(false);
+        vinespawnB.SetActive(false);
+        waterwallA.SetActive(false);
+        waterwallB.SetActive(false);
+        waterwallC.SetActive(false);
+        waterwallD.SetActive(false);
+        waterwallAwarn.SetActive(false);
+        waterwallBwarn.SetActive(false);
+        waterwallCwarn.SetActive(false);
+        waterwallDwarn.SetActive(false);
+        magmas.SetActive(false);
+        healthbar.SetActive(false);
+        Bbgm.SetActive(false);
+        BHbgm.SetActive(true);
+        isThink = false;
     }
     void Die()
     {
