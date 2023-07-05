@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
     public GameObject dialogCollider15;
     public GameObject dialogCollider18;
 
+    public bool dead = false;
 
     public GameObject mousespawn;
 
@@ -91,6 +92,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
 
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        Application.targetFrameRate = 30;
     }
 
     private void Start()
@@ -167,7 +169,7 @@ public class GameManager : MonoBehaviour
         bool isAxe = System.Convert.ToBoolean(PlayerPrefs.GetInt("isAxe"));
 
 
-        playerController.dead = false;
+        GameManager.Instance.dead = false;
         player.transform.position = new Vector3(x, y, 0);
         playerCamera.SetActive(true);
         playerCamera.transform.position = new Vector3(0, 0, -10); 

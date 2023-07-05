@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
     Vector2 move;
 
     public Animator anim;
-    public bool dead = false;
+    //public bool dead = false;
     public Vector2 moveDiriection; //애니메이션에 사용할 방향
 
     AudioSource audiosource;
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        if (dead)
+        if (GameManager.Instance.dead)
         {
             return;
         }
@@ -211,7 +211,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (dead)
+        if (GameManager.Instance.dead)
         {
             return;
         }
@@ -413,10 +413,11 @@ public class PlayerController : MonoBehaviour
     {
         while (true)
         {
-            if (health <= 0 && dead == false)
+            if (health <= 0 && GameManager.Instance.dead == false)
             {
+                GameManager.Instance.dead = true;
                 anim.SetTrigger("Die");
-                dead = true;
+                
                 yield return new WaitForSeconds(2f);
                 //dead = false;
                 Delay();
@@ -428,8 +429,9 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        if (dead)
+        if (GameManager.Instance.dead)
         {
+            GameManager.Instance.dead = true;
             anim.SetTrigger("Die");
             //dead = false;
             Invoke("Delay", 2f);
@@ -442,7 +444,7 @@ public class PlayerController : MonoBehaviour
         {
             wolfDead = false;
             gameOverUI.SetActive(true);
-            dead = false;
+            GameManager.Instance.dead = false;
             Time.timeScale = 0;
         }
         
@@ -503,9 +505,9 @@ public class PlayerController : MonoBehaviour
         {
             Trap();
         }
-        if(collision.tag == "TrabObject" && dead == false)
+        if(collision.tag == "TrabObject" && GameManager.Instance.dead == false)
         {
-            dead = true;
+            GameManager.Instance.dead = true;
             trapDead = true;
             Die();
             //Invoke("Die", 0.5f);
@@ -545,7 +547,7 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.tag == "Wolf")
         {
-            dead = true;
+            GameManager.Instance.dead = true;
             wolfDead = true;
             Die();
         }
