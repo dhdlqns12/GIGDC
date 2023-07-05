@@ -6,7 +6,7 @@ public class howtoplayMini : MonoBehaviour
 {
     private void OnEnable()
     {
-        Invoke("Delay", 5f);
+        Invoke("Delay", 3f);
     }
 
     void Delay()

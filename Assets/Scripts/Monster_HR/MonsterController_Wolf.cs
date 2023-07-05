@@ -31,7 +31,7 @@ public class MonsterController_Wolf : MonoBehaviour
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.velocity = Vector3.zero; 
 
-        Invoke("Follow", 3f);
+        Invoke("Follow", 1.5f);
 
     }
 
