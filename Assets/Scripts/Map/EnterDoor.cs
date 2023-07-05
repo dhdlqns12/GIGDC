@@ -9,20 +9,27 @@ public class EnterDoor : MonoBehaviour
     public Transform cameraPos;
     public GameObject playerCamera;
     public PlayerController pr;
-
+   
     public int value = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
+    }
+    private void Update()
+    {
+       
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.tag == "Player" && GameManager.Instance.key == true)
         {
+            
             collision.gameObject.transform.position = nextDoor.transform.position;
 
             if (value == 0)
@@ -41,6 +48,7 @@ public class EnterDoor : MonoBehaviour
 
             Camera.main.transform.position = new Vector3(cameraPos.position.x, cameraPos.position.y, -10);
             //pr.GetComponent<PlayerController>().cam.transform.position = new Vector3(cameraPos.position.x, cameraPos.position.y, -10);
+
 
         }
     }

@@ -62,7 +62,7 @@ public class BossController : MonoBehaviour
 
         renderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        Invoke("Think", 2f);
+       
 
         magmas.SetActive(true);
         healthbar.SetActive(true);
