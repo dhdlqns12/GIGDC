@@ -404,9 +404,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnHit(int dmg)
     {
-        health -= dmg;
-        spriteRenderer.color = new Color(1, 0, 1, 0.4f);
-        Invoke("Returnhit", 0.6f);
+        if(GameManager.Instance.dead == false)
+        {
+            health -= dmg;
+            spriteRenderer.color = new Color(1, 0, 1, 0.4f);
+            Invoke("Returnhit", 0.6f);
+        }
+        else
+        {
+            return;
+        }
     }
 
     IEnumerator deadCheck()
