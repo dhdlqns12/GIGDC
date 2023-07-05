@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
         dialogCollider6.SetActive(true);
         dialogCollider7.SetActive(true);
         dialogCollider8.SetActive(true);
-        dialogCollider9.SetActive(true);
+        //dialogCollider9.SetActive(true);
         dialogCollider11.SetActive(true);
         dialogCollider13.SetActive(true);
         dialogCollider16.SetActive(false);
