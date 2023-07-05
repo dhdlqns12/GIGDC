@@ -49,24 +49,24 @@ public class EnemyAttack : MonoBehaviour
         {
             if (enemyName == "Mouse")
             {
-                damage = 1;
+                damage = 31;
                 other.GetComponent<PlayerController>().OnHit(damage);
 
             }
             else if (enemyName == "Bat")
             {
-                damage = 2;
+                damage = 5;
                 other.GetComponent<PlayerController>().OnHit(damage);
             }
             else if (enemyName == "Fox")
             {
-                damage = 3;
+                damage = 10;
                 other.GetComponent<PlayerController>().OnHit(damage);
             }
 
             else if (enemyName == "Boss")
             {
-                damage = 5;
+                damage = 15;
                 other.GetComponent<PlayerController>().OnHit(damage);
             }
             gameObject.SetActive(false);

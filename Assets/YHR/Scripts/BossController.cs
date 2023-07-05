@@ -74,6 +74,7 @@ public class BossController : MonoBehaviour
     {
         poolmanager.SetActive(true);
         health = 1000;
+        Invoke("Think", 2f);
 
     }
     private void Update()
