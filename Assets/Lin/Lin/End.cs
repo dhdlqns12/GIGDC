@@ -16,7 +16,7 @@ public class End : MonoBehaviour
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
-        Invoke("GoMain", 22f);
+        Invoke("GoMain", 26f);
     }
 
     private void Update()
